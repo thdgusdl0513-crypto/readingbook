@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>독서 기록 노트</title>
+<meta name="theme-color" content="#1d3b6e" id="themeColor">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="독서 기록">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231d3b6e'/%3E%3Crect x='14' y='9' width='36' height='46' fill='%23dcc6a2'/%3E%3Crect x='19' y='17' width='20' height='3' fill='%23211c18'/%3E%3Crect x='19' y='23' width='14' height='3' fill='%23211c18'/%3E%3Crect x='19' y='31' width='10' height='2' fill='%23ad3421'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 아래 색 값은 처음 그릴 때만 쓰이고, 실제 색은 설정에서 고른 색으로 덮어씁니다. */
+  --frame:#1d3b6e;
+  --frame-ink:#eaddc4;
+  --paper:#dcc6a2;
+  --paper-hi:#e6d6ba;
+  --ink:#211c18;
+  --ink-soft:rgba(33,28,24,.64);
+  --ink-faint:rgba(33,28,24,.42);
+  --ink-ghost:rgba(33,28,24,.24);
+  --rule:rgba(33,28,24,.2);
+  --red:#ad3421;
+  --orange:#c2531a;
+  --accent:#1d3b6e;
+  --accent-ink:#eaddc4;
+  --bar-bg:#dcc6a2;
+  --bar-ink:#211c18;
+  --serif:"Nanum Myeongjo","AppleMyungjo","Noto Serif KR","Batang",serif;
+  --sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --prism:linear-gradient(200deg,#a98bff 0%,#6fb2ff 20%,#7fe0b0 40%,#fff27a 58%,#ffb061 76%,#ff86a0 100%);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html:has(dialog[open]){overflow:hidden}
+body{
+  margin:0;
+  background:var(--frame);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  min-height:100dvh;
+  padding:0 0 calc(92px + env(safe-area-inset-bottom,0px));
+  -webkit-font-smoothing:antialiased;
+}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.tabs :focus-visible,.bar :focus-visible{outline-color:var(--frame-ink)}
+[hidden]{display:none !important}
+
+/* 장 넘기기 */
+.tabs{
+  position:sticky;top:0;z-index:4;
+  background:var(--frame);
+  padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;
+}
+.tabs-in{max-width:480px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.tab{
+  border:0;background:none;padding:6px 0 5px;
+  border-bottom:1.5px solid transparent;
+  font-family:var(--serif);font-weight:700;font-size:14.5px;
+  color:var(--frame-ink);opacity:.55;white-space:nowrap;
+}
+.tab[aria-current="page"]{opacity:1;border-bottom-color:var(--frame-ink)}
+.tab-side{margin-left:auto;display:flex;gap:14px}
+.tab-side button{
+  border:0;background:none;padding:6px 0;white-space:nowrap;
+  font-size:11.5px;color:var(--frame-ink);opacity:.84;
+  text-decoration:underline;text-underline-offset:3px;
+}
+
+/* 종이결 */
+.paper,.leaf,.plate{position:relative}
+.paper::after,.leaf::after,.plate::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:var(--grain);opacity:.13;
+}
+
+/* 첫 장: 독서 기록 */
+.paper{
+  width:calc(100% - 28px);max-width:480px;margin:0 auto;
+  background:var(--paper);
+  min-height:calc(100dvh - 156px);
+  padding:0 22px 26px;
+  display:flex;flex-direction:column;
+}
+.series{margin:0;padding-top:15px;text-align:right;font-size:11.5px;font-weight:700;color:var(--orange)}
+.series b{margin-left:5px;font-weight:700}
+.head h1{margin:38px 0 0}
+.head h1 button{
+  display:block;width:100%;padding:0;border:0;background:none;text-align:left;
+  font-family:var(--serif);font-weight:800;
+  font-size:clamp(25px,7.5vw,32px);line-height:1.38;letter-spacing:-.02em;
+  word-break:keep-all;
+}
+.byline{
+  margin:14px 0 0;
+  font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.14em;
+  color:var(--red);
+}
+
+/* 표지 사진 (설정에서 고른 경우에만 보임) */
+.plate{
+  margin:30px 0 0;aspect-ratio:4/3;overflow:hidden;border-radius:2px;
+  background:#cdc4bb;
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset,2px 4px 14px rgba(0,0,0,.14);
+}
+.plate img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:contrast(.94) saturate(.9) sepia(.1);
+}
+.plate::after{opacity:.2}
+.tally{margin:22px 0 0;font-size:13px;color:var(--ink-soft)}
+.notice{
+  margin:18px 0 0;padding:10px 12px;border:1px solid var(--rule);
+  font-size:12.5px;line-height:1.55;color:var(--ink-soft);word-break:keep-all;
+}
+.find{margin-top:18px}
+.find input{
+  width:100%;border:0;border-bottom:1px solid var(--ink);border-radius:0;
+  background:transparent;padding:9px 0;font-size:16px;
+}
+input::placeholder,textarea::placeholder{color:var(--ink-faint)}
+
+#shelf{flex:1}
+.year{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin:34px 0 0;padding-bottom:7px;border-bottom:1.5px solid var(--ink);
+}
+.year h2{margin:0;font-family:var(--serif);font-weight:800;font-size:18px}
+.year span{font-size:12px;color:var(--ink-soft)}
+.entry{
+  display:grid;grid-template-columns:62px 1fr;gap:15px;
+  padding:17px 0 16px;border-bottom:1px solid var(--rule);
+}
+.entry-open{display:block;width:100%;padding:0;border:0;background:none;text-align:left}
+.entry-top{display:flex;gap:10px;align-items:baseline;justify-content:space-between}
+.entry-title{
+  font-family:var(--serif);font-weight:800;font-size:17px;line-height:1.38;
+  letter-spacing:-.01em;word-break:keep-all;overflow-wrap:anywhere;
+}
+.entry-no{flex:none;font-size:11px;font-weight:700;color:var(--orange)}
+.entry-author{display:block;margin-top:3px;font-family:var(--serif);font-weight:700;font-size:13.5px;color:var(--red)}
+.entry-meta{display:block;margin-top:5px;font-size:12px;color:var(--ink-soft)}
+.entry-stars{display:block;margin-top:4px;font-size:12px;letter-spacing:2px;color:var(--red)}
+.entry-stars i{font-style:normal;color:var(--ink-ghost)}
+.entry-review{
+  display:block;margin-top:9px;
+  font-family:var(--serif);font-size:15px;line-height:1.72;
+  word-break:keep-all;overflow-wrap:anywhere;
+}
+.entry-review.none{font-family:var(--sans);font-size:12.5px;color:var(--ink-faint)}
+.kyobo-link{
+  display:inline-block;margin-top:9px;padding:3px 0;
+  font-size:12px;font-weight:500;color:var(--ink);text-underline-offset:3px;
+}
+.empty{margin:44px 0 0;font-family:var(--serif);font-size:16px;line-height:1.8;word-break:keep-all}
+.empty small{display:block;margin-top:10px;font-family:var(--sans);font-size:13px;color:var(--ink-soft)}
+
+.cover{
+  position:relative;overflow:hidden;width:62px;aspect-ratio:2/3;
+  background:var(--frame);box-shadow:2px 3px 9px rgba(0,0,0,.22);align-self:start;
+}
+.cover.m{width:78px}
+.cover.xs{width:40px;box-shadow:none}
+.cover-gen{
+  position:absolute;inset:9% 10%;background:var(--paper-hi);padding:12% 10% 0;
+  display:flex;flex-direction:column;gap:3px;overflow:hidden;
+}
+.cover-gen b{
+  font-family:var(--serif);font-weight:800;font-size:8px;line-height:1.3;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;word-break:break-all;
+}
+.cover-gen em{font-family:var(--serif);font-style:normal;font-weight:700;font-size:6.5px;color:var(--red);white-space:nowrap;overflow:hidden}
+.cover.m .cover-gen b{font-size:10px}
+.cover.m .cover-gen em{font-size:8px}
+.cover.xs .cover-gen b{font-size:5.5px;-webkit-line-clamp:3}
+.cover.xs .cover-gen em{display:none}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--paper-hi)}
+
+.imprint{margin-top:40px;position:relative;z-index:1}
+.imprint button{
+  border:0;background:none;padding:6px 0;font-size:12.5px;color:var(--ink-soft);
+  text-decoration:underline;text-underline-offset:3px;
+}
+
+/* 다음 장: 하루 일기 */
+.leaves{width:calc(100% - 28px);max-width:480px;margin:0 auto}
+.leaves .notice{margin:0 0 12px;color:var(--frame-ink);border-color:currentColor;opacity:.8}
+.writers{display:flex;justify-content:center;gap:28px;margin:2px 0 14px}
+.writers button{
+  border:0;background:none;padding:6px 3px 5px;border-bottom:1.5px solid transparent;
+  font-family:var(--serif);font-weight:800;font-size:15.5px;color:var(--frame-ink);opacity:.5;
+}
+.writers button[aria-pressed="true"]{opacity:1;border-bottom-color:var(--frame-ink)}
+.writers :focus-visible{outline-color:var(--frame-ink)}
+.leaf{background:var(--paper);margin:0 0 12px;overflow:hidden}
+.leaf:first-child::before{
+  content:"";position:absolute;right:8%;top:22px;width:58px;height:36px;border-radius:50%;
+  background:var(--prism);filter:blur(9px);transform:rotate(-32deg);opacity:.5;pointer-events:none;
+}
+.leaf-open{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;
+  width:100%;min-height:310px;
+  border:0;background:none;text-align:left;
+  padding:30px 36px 56px;
+  font-family:var(--serif);color:var(--ink);
+}
+div.leaf-open{cursor:default}
+.leaf-date{display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--ink-soft)}
+.leaf-text{
+  display:block;margin-top:48px;
+  font-size:14.5px;font-weight:700;line-height:1.85;
+  white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;
+}
+.leaf-text.none{font-weight:400;color:var(--ink-soft)}
+.leaf-sign{display:block;margin-top:30px;font-size:11.5px;font-weight:800}
+.leaves .imprint{margin:22px 0 0;padding:0 2px}
+.leaves .imprint button{color:var(--frame-ink);opacity:.7}
+
+/* 아래 고정 버튼 */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  background:var(--frame);
+  padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px));
+}
+.bar button{
+  display:block;width:100%;max-width:480px;margin:0 auto;height:52px;
+  border:0;border-radius:2px;
+  background:var(--bar-bg);color:var(--bar-ink);
+  font-family:var(--serif);font-weight:800;font-size:17px;letter-spacing:.02em;
+}
+
+/* 시트 */
+dialog.sheet{
+  position:fixed;inset:auto 0 0 0;margin:0 auto;
+  width:100%;max-width:508px;max-height:92dvh;
+  border:0;padding:0;border-radius:2px 2px 0 0;
+  background:var(--paper);color:var(--ink);overflow:hidden;
+  box-shadow:0 -6px 30px rgba(0,0,0,.28);
+}
+dialog.sheet[open]{display:flex;flex-direction:column;animation:rise .22s ease-out}
+dialog.sheet::backdrop{background:rgba(18,18,24,.62)}
+dialog#setSheet{max-height:76dvh}
+dialog#setSheet::backdrop{background:rgba(18,18,24,.16)}
+@keyframes rise{from{transform:translateY(28px);opacity:.4}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){dialog.sheet[open]{animation:none}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px 12px}
+.sheet-head h2{margin:0;font-family:var(--serif);font-weight:800;font-size:20px}
+.sheet-close{border:0;background:none;padding:8px 0 8px 14px;font-size:13.5px;color:var(--ink-soft)}
+.sheet-body{
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:4px 22px calc(24px + env(safe-area-inset-bottom,0px));
+}
+.sheet-note{margin:0 0 16px;font-size:13px;line-height:1.65;color:var(--ink-soft);word-break:keep-all}
+.sheet-error{margin:0 0 14px;font-size:13px;line-height:1.6;color:var(--red);word-break:keep-all}
+
+.seek{background:var(--paper-hi);padding:14px 14px 13px;margin-bottom:22px}
+.seek label,.field label,.field .label{display:block;font-size:12px;font-weight:700;color:var(--ink-soft)}
+.seek-row{display:flex;gap:8px;margin-top:6px}
+.seek-row input{
+  flex:1;min-width:0;height:44px;padding:0 10px;
+  border:1.5px solid var(--ink);border-radius:2px;background:transparent;font-size:16px;
+}
+.seek-row button{
+  flex:none;height:44px;padding:0 16px;border:0;border-radius:2px;
+  background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:14px;
+}
+.seek-status{margin:9px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink-soft);word-break:keep-all}
+.results{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--rule)}
+.results button{
+  display:grid;grid-template-columns:40px 1fr;gap:11px;align-items:center;
+  width:100%;padding:9px 0;border:0;border-bottom:1px solid var(--rule);background:none;text-align:left;
+}
+.results strong{display:block;font-family:var(--serif);font-weight:800;font-size:14.5px;line-height:1.35}
+.results small{display:block;margin-top:2px;font-size:12px;color:var(--ink-soft)}
+.seek a{display:inline-block;margin-top:11px;font-size:13px;font-weight:500;color:var(--ink);text-underline-offset:3px}
+
+.field{margin-bottom:18px}
+.field input,.field textarea{
+  display:block;width:100%;
+  border:0;border-bottom:1.5px solid currentColor;border-radius:0;
+  background:transparent;padding:7px 0 8px;font-size:16px;
+}
+.field textarea{resize:none;font-family:var(--serif);line-height:1.7}
+.field input.big{font-family:var(--serif);font-weight:800;font-size:18px}
+.field .hint{margin:6px 0 0;font-size:12px;line-height:1.5;color:var(--ink-soft);word-break:keep-all}
+.field .count{float:right;font-weight:400}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.isbn-row{display:grid;grid-template-columns:1fr 78px;gap:16px;align-items:start}
+.stars{display:flex;gap:2px;margin-top:2px}
+.stars button{border:0;background:none;padding:4px 6px 4px 0;font-size:28px;line-height:1;color:var(--ink-ghost)}
+.stars button.on{color:var(--red)}
+
+.actions{display:flex;gap:10px;margin-top:6px}
+.btn-main{
+  flex:1;height:52px;border:0;border-radius:2px;
+  background:var(--accent);color:var(--accent-ink);
+  font-family:var(--serif);font-weight:800;font-size:17px;
+}
+.btn-main:disabled{opacity:.6}
+.btn-line{
+  flex:none;height:52px;padding:0 16px;border:1.5px solid currentColor;border-radius:2px;
+  background:none;font-size:14px;font-weight:500;
+}
+.btn-line.warn{color:var(--red)}
+.edit-links{margin:16px 0 0}
+
+/* 설정 */
+.set{padding:4px 0 22px;margin-bottom:20px;border-bottom:1px solid var(--rule)}
+.set:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+.set h3{margin:0 0 10px;font-family:var(--serif);font-weight:800;font-size:16px}
+.targets{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.targets button{
+  display:flex;align-items:center;gap:9px;height:44px;padding:0 11px;
+  border:1.5px solid var(--rule);border-radius:2px;background:none;
+  font-size:13px;text-align:left;white-space:nowrap;
+}
+.targets button[aria-pressed="true"]{border-color:var(--ink);font-weight:700}
+.targets i{flex:none;width:20px;height:20px;border-radius:50%;border:1px solid var(--ink-faint)}
+.sv{
+  position:relative;height:150px;border-radius:2px;touch-action:none;cursor:crosshair;
+  border:1px solid var(--rule);
+}
+.sv i{
+  position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;
+  border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.45),0 1px 4px rgba(0,0,0,.4);pointer-events:none;
+}
+.hue{
+  -webkit-appearance:none;appearance:none;display:block;width:100%;height:22px;margin:14px 0 0;padding:0;
+  border:1px solid var(--rule);border-radius:11px;
+  background:linear-gradient(to right,#f00 0%,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);
+}
+.hue::-webkit-slider-thumb{
+  -webkit-appearance:none;width:24px;height:24px;border-radius:50%;
+  background:#fff;border:1px solid rgba(0,0,0,.45);box-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.hue::-moz-range-thumb{
+  width:22px;height:22px;border-radius:50%;
+  background:#fff;border:1px solid rgba(0,0,0,.45);box-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:16px 0 0}
+.swatches button{
+  aspect-ratio:1;width:100%;max-width:44px;justify-self:center;
+  border-radius:50%;border:1px solid var(--ink-faint);padding:0;
+}
+.picker-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.picker-foot span{font-size:12.5px;color:var(--ink-soft);letter-spacing:.04em}
+.text-btn{
+  border:0;background:none;padding:6px 0;font-size:13px;color:var(--ink);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.set-actions{display:flex;flex-wrap:wrap;gap:6px 20px}
+.howto{margin:0}
+.howto dt{margin:14px 0 4px;font-size:13px;font-weight:700}
+.howto dt:first-child{margin-top:0}
+.howto dd{margin:0;font-size:13px;line-height:1.7;color:var(--ink-soft);word-break:keep-all}
+
+#toast{
+  position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:20;
+  transform:translateX(-50%);max-width:calc(100% - 40px);
+  background:#211c18;color:#eaddc4;
+  padding:10px 16px;border-radius:2px;font-size:13.5px;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+#toast.show{opacity:1}
+</style>
+</head>
+<body data-page="books">
+
+<nav class="tabs" aria-label="노트의 장">
+  <div class="tabs-in">
+    <button type="button" class="tab" data-go="books" aria-current="page">독서 기록</button>
+    <button type="button" class="tab" data-go="diary">하루 일기</button>
+    <div class="tab-side">
+      <button type="button" id="syncBtn">시트 연결</button>
+      <button type="button" data-settings>설정</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- 첫 장 -->
+  <section class="paper" id="pageBooks" aria-label="독서 기록">
+    <header class="head">
+      <p class="series">독서 기록 노트<b id="seriesNo">000</b></p>
+      <h1><button type="button" id="titleBtn" aria-label="노트 제목 바꾸기"></button></h1>
+      <p class="byline" id="byline"></p>
+      <div class="plate" id="plate" aria-hidden="true" hidden>
+        <img id="plateImg" alt="">
+      </div>
+      <p class="tally" id="tally" hidden></p>
+    </header>
+
+    <p class="notice storage-notice" hidden>지금 이 화면에서는 기록이 저장되지 않습니다. GitHub에 올린 주소로 열면 휴대폰에 저장됩니다.</p>
+
+    <div class="find" id="findWrap" hidden>
+      <input type="search" id="filter" placeholder="제목, 저자, 감상평에서 찾기" aria-label="기록 찾기" autocomplete="off">
+    </div>
+
+    <div id="shelf"></div>
+
+    <footer class="imprint">
+      <button type="button" data-settings>설정과 사용법</button>
+    </footer>
+  </section>
+
+  <!-- 다음 장 -->
+  <section class="leaves" id="pageDiary" aria-label="하루 일기" hidden>
+    <p class="notice storage-notice" hidden>지금 이 화면에서는 일기가 저장되지 않습니다. GitHub에 올린 주소로 열면 휴대폰에 저장됩니다.</p>
+    <div class="writers" id="writers" role="group" aria-label="일기 쓰는 사람"></div>
+    <div id="leafStack"></div>
+    <footer class="imprint">
+      <button type="button" data-settings>설정과 사용법</button>
+    </footer>
+  </section>
+</main>
+
+<div class="bar"><button type="button" id="addBtn">읽은 책 기록하기</button></div>
+
+<!-- 책 기록 시트 -->
+<dialog class="sheet" id="bookSheet" aria-labelledby="bookSheetTitle">
+  <div class="sheet-head">
+    <h2 id="bookSheetTitle">읽은 책 기록하기</h2>
+    <button type="button" class="sheet-close" data-close>닫기</button>
+  </div>
+  <div class="sheet-body">
+    <div class="seek" id="seek">
+      <label for="q">책 찾기</label>
+      <div class="seek-row">
+        <input id="q" type="search" placeholder="책 제목 또는 ISBN" autocomplete="off" enterkeyhint="search">
+        <button type="button" id="seekBtn">찾기</button>
+      </div>
+      <p class="seek-status" id="seekStatus" hidden></p>
+      <ul class="results" id="results" hidden></ul>
+      <a id="kyoboFind" href="https://www.kyobobook.co.kr/" target="_blank" rel="noopener">교보문고에서 찾기</a>
+    </div>
+
+    <form id="bookForm" novalidate>
+      <div class="field">
+        <label for="fTitle">제목</label>
+        <input id="fTitle" class="big" type="text" maxlength="120" required autocomplete="off">
+      </div>
+      <div class="pair">
+        <div class="field">
+          <label for="fAuthor">저자</label>
+          <input id="fAuthor" type="text" maxlength="80" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="fPublisher">출판사</label>
+          <input id="fPublisher" type="text" maxlength="60" autocomplete="off">
+        </div>
+      </div>
+      <div class="isbn-row">
+        <div>
+          <div class="field">
+            <label for="fIsbn">ISBN</label>
+            <input id="fIsbn" type="text" inputmode="numeric" maxlength="20" placeholder="9788932035338" autocomplete="off">
+            <p class="hint">교보문고 책 소개에 있는 13자리 숫자를 넣으면 표지가 붙습니다.</p>
+          </div>
+          <div class="field">
+            <label for="fDate">다 읽은 날</label>
+            <input id="fDate" type="date">
+          </div>
+        </div>
+        <div id="preview" aria-hidden="true"></div>
+      </div>
+      <div class="field">
+        <span class="label" id="starsLabel">별점</span>
+        <div class="stars" id="stars" role="group" aria-labelledby="starsLabel"></div>
+      </div>
+      <div class="field">
+        <label for="fReview">한줄 감상평 <span class="count" id="reviewCount">0/100</span></label>
+        <textarea id="fReview" rows="2" maxlength="100" placeholder="이 책을 한 문장으로 남긴다면"></textarea>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-line warn" id="deleteBtn" hidden>삭제</button>
+        <button type="submit" class="btn-main">기록 저장</button>
+      </div>
+      <p class="edit-links" id="editLinks" hidden>
+        <a class="kyobo-link" id="kyoboOpen" href="https://www.kyobobook.co.kr/" target="_blank" rel="noopener">교보문고에서 이 책 보기</a>
+      </p>
+    </form>
+  </div>
+</dialog>
+
+<!-- 일기 시트 -->
+<dialog class="sheet" id="diarySheet" aria-labelledby="diarySheetTitle">
+  <div class="sheet-head">
+    <h2 id="diarySheetTitle">오늘 일기 쓰기</h2>
+    <button type="button" class="sheet-close" data-close>닫기</button>
+  </div>
+  <div class="sheet-body">
+    <form id="diaryForm" novalidate>
+      <div class="field">
+        <label for="dDate">날짜</label>
+        <input id="dDate" type="date">
+      </div>
+      <div class="field">
+        <label for="dText">하루 일기 <span class="count" id="diaryCount">0/1000</span></label>
+        <textarea id="dText" rows="9" maxlength="1000" placeholder="오늘 하루를 몇 줄로 남겨 보세요.&#10;Write a few lines about today."></textarea>
+        <p class="hint">한글과 영어 모두 쓸 수 있고, 줄을 바꾼 자리는 그대로 보입니다.</p>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-line warn" id="diaryDeleteBtn" hidden>삭제</button>
+        <button type="submit" class="btn-main">일기 저장</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- 표지 제목 시트 -->
+<dialog class="sheet" id="nameSheet" aria-labelledby="nameSheetTitle">
+  <div class="sheet-head">
+    <h2 id="nameSheetTitle">표지 제목 바꾸기</h2>
+    <button type="button" class="sheet-close" data-close>닫기</button>
+  </div>
+  <div class="sheet-body">
+    <form id="nameForm" novalidate>
+      <div class="field">
+        <label for="nTitle">표지 제목</label>
+        <input id="nTitle" class="big" type="text" maxlength="40" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="nByline">표지의 붉은 글씨 줄</label>
+        <input id="nByline" type="text" maxlength="24" placeholder="예: 독서기록" autocomplete="off">
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn-main">제목 저장</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- 구글 시트 연결 시트 -->
+<dialog class="sheet" id="syncSheet" aria-labelledby="syncSheetTitle">
+  <div class="sheet-head">
+    <h2 id="syncSheetTitle">구글 시트 연결</h2>
+    <button type="button" class="sheet-close" data-close>닫기</button>
+  </div>
+  <div class="sheet-body">
+    <p class="sheet-note" id="syncNote"></p>
+    <form id="syncForm" novalidate>
+      <div class="field">
+        <label for="sUrl">웹앱 주소</label>
+        <input id="sUrl" type="url" inputmode="url" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="sPass">비밀번호</label>
+        <input id="sPass" type="password" autocomplete="off">
+        <p class="hint">Apps Script 맨 위 PASSWORD에 적은 것과 같아야 합니다.</p>
+      </div>
+      <p class="sheet-error" id="syncError" hidden></p>
+      <div class="actions">
+        <button type="button" class="btn-line warn" id="syncOffBtn" hidden>연결 끊기</button>
+        <button type="submit" class="btn-main" id="syncGoBtn">시트와 맞추기</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- 설정과 사용법 시트 -->
+<dialog class="sheet" id="setSheet" aria-labelledby="setSheetTitle">
+  <div class="sheet-head">
+    <h2 id="setSheetTitle">설정과 사용법</h2>
+    <button type="button" class="sheet-close" data-close>닫기</button>
+  </div>
+  <div class="sheet-body">
+    <section class="set">
+      <h3>색 바꾸기</h3>
+      <p class="sheet-note">바꿀 곳을 고른 다음 색 판과 무지개 띠를 움직여 보세요. 글자색은 읽기 좋게 따라 바뀝니다.</p>
+      <div class="targets" id="targets"></div>
+      <div class="sv" id="sv" tabindex="0" role="slider" aria-label="색의 진하기와 밝기"><i id="svDot"></i></div>
+      <input type="range" class="hue" id="hue" min="0" max="360" step="1" aria-label="색상">
+      <div class="swatches" id="swatches"></div>
+      <div class="picker-foot">
+        <span id="hexText"></span>
+        <button type="button" class="text-btn" id="resetColor">고른 곳을 처음 색으로</button>
+      </div>
+    </section>
+
+    <section class="set">
+      <h3>표지</h3>
+      <div class="set-actions">
+        <button type="button" class="text-btn" id="renameBtn">표지 제목 바꾸기</button>
+        <button type="button" class="text-btn" id="photoBtn">표지 사진 고르기</button>
+        <button type="button" class="text-btn" id="photoOffBtn" hidden>표지 사진 빼기</button>
+      </div>
+    </section>
+
+    <section class="set">
+      <h3>저장</h3>
+      <div class="set-actions">
+        <button type="button" class="text-btn" id="openSyncBtn">구글 시트 연결</button>
+        <button type="button" class="text-btn" id="exportBtn">백업 파일 저장</button>
+        <button type="button" class="text-btn" id="importBtn">백업 파일 불러오기</button>
+      </div>
+    </section>
+
+    <section class="set">
+      <h3>사용법</h3>
+      <dl class="howto">
+        <dt>독서 기록</dt>
+        <dd>아래 ‘읽은 책 기록하기’를 누르고 책 제목을 찾거나 직접 적습니다. ISBN 13자리를 넣으면 교보문고 표지가 붙습니다. 적어 둔 기록을 누르면 고치거나 지울 수 있습니다.</dd>
+        <dt>하루 일기</dt>
+        <dd>위에서 ‘하루 일기’로 넘긴 뒤 쓰는 사람의 이름을 고르고 아래 버튼을 누릅니다. 일기는 고른 이름의 탭에 들어가고, 휴대폰은 마지막에 고른 이름을 기억합니다. 한글과 영어 모두 쓸 수 있고 줄을 바꾼 자리가 그대로 보입니다. 날짜를 바꾸면 지난 날 일기도 쓸 수 있습니다.</dd>
+        <dt>친구와 같이 쓰기</dt>
+        <dd>두 사람이 같은 웹앱 주소와 비밀번호로 구글 시트에 연결하면 서로의 일기를 볼 수 있습니다. 시트에도 이름별 탭에 따로 쌓입니다.</dd>
+        <dt>색과 표지</dt>
+        <dd>배경색과 내용 색은 장마다 따로 정합니다. 표지 사진을 고르면 제목 아래에 내 사진이 들어갑니다. 사진은 이 휴대폰에만 저장됩니다.</dd>
+        <dt>저장되는 곳</dt>
+        <dd>기록은 이 휴대폰의 브라우저에 저장됩니다. 구글 시트에 연결하면 시트에도 저장되어 다른 기기에서 같은 기록을 볼 수 있습니다. 연결하지 않았다면 가끔 백업 파일을 저장해 두세요.</dd>
+        <dt>앱처럼 열기</dt>
+        <dd>브라우저 메뉴에서 ‘홈 화면에 추가’를 누르면 홈 화면 아이콘으로 바로 열립니다.</dd>
+      </dl>
+    </section>
+  </div>
+</dialog>
+
+<input type="file" id="importFile" accept="application/json,.json" hidden>
+<input type="file" id="photoFile" accept="image/*" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'dokseo-note-v1';
+  var SYNC_KEY = KEY + '-sync';
+  var PAGE_KEY = KEY + '-page';
+  var PHOTO_KEY = KEY + '-photo';
+  var KYOBO_SEARCH = 'https://search.kyobobook.co.kr/search?keyword=';
+  var KYOBO_COVER = 'https://contents.kyobobook.co.kr/sih/fit-in/';
+  var DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+
+  // 일기 쓰는 사람. 구글 시트의 탭 이름이 됩니다. Code.gs 의 WRITERS 와 같아야 합니다.
+  var WRITERS = ['송현', '유정'];
+  var WRITER_KEY = 'dokseo-note-v1-writer';
+
+  var DEFAULT_TITLE = '나의 외로움이 나를 이겨낼 수 있는 힘이 되었다.';
+  var DEFAULT_BYLINE = '독서기록';
+  var OLD_TITLE = '서랍에 읽은 책을 넣어 두었다';
+  var OLD_BYLINE = '나의 독서록';
+  var DEFAULT_THEME = {
+    books: { frame: '#1d3b6e', paper: '#dcc6a2' },
+    diary: { frame: '#e3e2de', paper: '#f2f1ee' }
+  };
+  var DARK_INK = '#211c18';
+  var LIGHT_INK = '#f3ecdf';
+  var SWATCHES = [
+    ['남색', '#1d3b6e'], ['베이지', '#dcc6a2'], ['하늘', '#5b8fcf'], ['벤치 파랑', '#3f6fa3'],
+    ['호수', '#b7cfc9'], ['풀빛', '#7a9a4e'], ['버터', '#edd28a'], ['금잔화', '#e39a2d'],
+    ['토마토', '#c8402c'], ['연보라', '#c3b2e0'], ['흰 종이', '#f2f1ee'], ['먹색', '#2b2926']
+  ];
+  var TARGETS = [
+    ['books', 'frame', '독서 기록 배경'], ['books', 'paper', '독서 기록 내용'],
+    ['diary', 'frame', '하루 일기 배경'], ['diary', 'paper', '하루 일기 내용']
+  ];
+
+  var store = {
+    title: DEFAULT_TITLE,
+    byline: DEFAULT_BYLINE,
+    sign: '',
+    theme: cloneTheme(DEFAULT_THEME),
+    books: [],
+    diary: []
+  };
+  var sync = { url: '', password: '', outbox: [], last: 0 };
+  var photo = '';
+  var persistent = true;
+  var page = 'books';
+  var writer = WRITERS[0];
+  var editingId = null;
+  var editingDiaryId = null;
+  var rating = 0;
+  var currentThumb = '';
+
+  function $(id) { return document.getElementById(id); }
+
+  function h(tag, props) {
+    var el = document.createElement(tag);
+    if (props) {
+      Object.keys(props).forEach(function (k) {
+        var v = props[k];
+        if (v == null || v === false) return;
+        if (k === 'class') el.className = v;
+        else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v);
+        else el.setAttribute(k, v === true ? '' : v);
+      });
+    }
+    for (var i = 2; i < arguments.length; i++) {
+      var kid = arguments[i];
+      if (kid == null || kid === false) continue;
+      el.appendChild(kid.nodeType ? kid : document.createTextNode(String(kid)));
+    }
+    return el;
+  }
+
+  /* ---------- 색 계산 ---------- */
+  function pad(n, len) { n = String(n); while (n.length < len) n = '0' + n; return n; }
+  function validHex(v) { return typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v) ? v.toLowerCase() : ''; }
+  function hexToRgb(hex) {
+    var n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function rgbToHex(r, g, b) {
+    return '#' + [r, g, b].map(function (x) {
+      return pad(Math.max(0, Math.min(255, Math.round(x))).toString(16), 2);
+    }).join('');
+  }
+  function hsvToHex(hh, s, v) {
+    var c = v * s, x = c * (1 - Math.abs((hh / 60) % 2 - 1)), m = v - c, r = 0, g = 0, b = 0;
+    if (hh < 60) { r = c; g = x; }
+    else if (hh < 120) { r = x; g = c; }
+    else if (hh < 180) { g = c; b = x; }
+    else if (hh < 240) { g = x; b = c; }
+    else if (hh < 300) { r = x; b = c; }
+    else { r = c; b = x; }
+    return rgbToHex((r + m) * 255, (g + m) * 255, (b + m) * 255);
+  }
+  function hexToHsv(hex) {
+    var c = hexToRgb(hex), r = c[0] / 255, g = c[1] / 255, b = c[2] / 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min, hh = 0;
+    if (d) {
+      if (max === r) hh = ((g - b) / d) % 6;
+      else if (max === g) hh = (b - r) / d + 2;
+      else hh = (r - g) / d + 4;
+      hh *= 60;
+      if (hh < 0) hh += 360;
+    }
+    return { h: hh, s: max ? d / max : 0, v: max };
+  }
+  function lum(hex) {
+    var c = hexToRgb(hex).map(function (v) {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function contrast(a, b) {
+    var la = lum(a), lb = lum(b);
+    return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+  }
+  function mix(a, b, t) {
+    var x = hexToRgb(a), y = hexToRgb(b);
+    return rgbToHex(x[0] + (y[0] - x[0]) * t, x[1] + (y[1] - x[1]) * t, x[2] + (y[2] - x[2]) * t);
+  }
+  function alpha(hex, a) { return 'rgba(' + hexToRgb(hex).join(',') + ',' + a + ')'; }
+  function readable(bg) { return contrast(bg, DARK_INK) >= contrast(bg, LIGHT_INK) ? DARK_INK : LIGHT_INK; }
+
+  function cloneTheme(t) {
+    return {
+      books: { frame: t.books.frame, paper: t.books.paper },
+      diary: { frame: t.diary.frame, paper: t.diary.paper }
+    };
+  }
+  function cleanTheme(t) {
+    var out = cloneTheme(DEFAULT_THEME);
+    if (t && typeof t === 'object') {
+      ['books', 'diary'].forEach(function (p) {
+        ['frame', 'paper'].forEach(function (k) {
+          var v = t[p] && validHex(t[p][k]);
+          if (v) out[p][k] = v;
+        });
+      });
+    }
+    return out;
+  }
+
+  function applyTheme() {
+    var t = store.theme[page];
+    var frame = t.frame, paper = t.paper;
+    var ink = readable(paper);
+    var dark = ink === LIGHT_INK;
+    var frameInk = readable(frame);
+    var split = contrast(frame, paper) >= 2.2;      // 배경과 내용이 뚜렷이 다른가
+    var red = dark ? '#f2a593' : '#ad3421';
+    var orange = dark ? '#f0b27c' : '#c2531a';
+    if (contrast(paper, red) < 2.6) red = ink;
+    if (contrast(paper, orange) < 2.2) orange = ink;
+
+    var s = document.body.style;
+    s.setProperty('--frame', frame);
+    s.setProperty('--frame-ink', frameInk);
+    s.setProperty('--paper', paper);
+    s.setProperty('--paper-hi', mix(paper, '#ffffff', dark ? 0.09 : 0.3));
+    s.setProperty('--ink', ink);
+    s.setProperty('--ink-soft', alpha(ink, 0.66));
+    s.setProperty('--ink-faint', alpha(ink, 0.42));
+    s.setProperty('--ink-ghost', alpha(ink, 0.24));
+    s.setProperty('--rule', alpha(ink, 0.2));
+    s.setProperty('--red', red);
+    s.setProperty('--orange', orange);
+    s.setProperty('--accent', split ? frame : ink);
+    s.setProperty('--accent-ink', split ? frameInk : paper);
+    s.setProperty('--bar-bg', split ? paper : ink);
+    s.setProperty('--bar-ink', split ? ink : paper);
+    $('themeColor').setAttribute('content', frame);
+  }
+
+  /* ---------- 휴대폰 저장 ---------- */
+  function migrateDefaults() {
+    var changed = false;
+    if (store.title === OLD_TITLE) { store.title = DEFAULT_TITLE; changed = true; }
+    if (store.byline === OLD_BYLINE) { store.byline = DEFAULT_BYLINE; changed = true; }
+    return changed;
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var d = JSON.parse(raw);
+        if (d && typeof d === 'object') {
+          if (Array.isArray(d.books)) store.books = d.books.map(cleanBook).filter(Boolean);
+          if (Array.isArray(d.diary)) store.diary = d.diary.map(cleanDiary).filter(Boolean);
+          if (typeof d.title === 'string' && d.title.trim()) store.title = d.title;
+          if (typeof d.byline === 'string') store.byline = d.byline;
+          if (typeof d.sign === 'string') store.sign = d.sign;
+          store.theme = cleanTheme(d.theme);
+        }
+      }
+      migrateDefaults();
+      var s = JSON.parse(localStorage.getItem(SYNC_KEY) || 'null');
+      if (s && typeof s.url === 'string') {
+        sync.url = s.url;
+        sync.password = String(s.password || '');
+        sync.outbox = Array.isArray(s.outbox) ? s.outbox : [];
+        sync.last = Number(s.last) || 0;
+      }
+      var p = localStorage.getItem(PHOTO_KEY) || '';
+      if (/^data:image\//.test(p)) photo = p;
+      if (localStorage.getItem(PAGE_KEY) === 'diary') page = 'diary';
+      var w = localStorage.getItem(WRITER_KEY);
+      if (WRITERS.indexOf(w) !== -1) writer = w;
+      localStorage.setItem(KEY + '-check', '1');
+      localStorage.removeItem(KEY + '-check');
+    } catch (e) {
+      persistent = false;
+    }
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(store)); }
+    catch (e) { persistent = false; }
+  }
+  function saveSync() {
+    try { localStorage.setItem(SYNC_KEY, JSON.stringify(sync)); } catch (e) {}
+  }
+
+  function str(v, max) { return (v == null ? '' : String(v)).trim().slice(0, max); }
+  function validDate(v) { v = str(v, 10); return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : ''; }
+
+  function cleanBook(b) {
+    if (!b || typeof b !== 'object') return null;
+    var title = str(b.title, 120);
+    if (!title) return null;
+    var thumb = str(b.thumb, 500);
+    if (!/^https:\/\//.test(thumb)) thumb = '';
+    var created = Number(b.createdAt) || Date.now();
+    return {
+      id: str(b.id, 40) || newId('b'),
+      title: title,
+      author: str(b.author, 80),
+      publisher: str(b.publisher, 60),
+      isbn: str(b.isbn, 20).replace(/[^0-9Xx]/g, ''),
+      thumb: thumb,
+      date: validDate(b.date),
+      rating: Math.max(0, Math.min(5, parseInt(b.rating, 10) || 0)),
+      review: str(b.review, 100),
+      createdAt: created,
+      updatedAt: Number(b.updatedAt) || created
+    };
+  }
+
+  function cleanDiary(d) {
+    if (!d || typeof d !== 'object') return null;
+    var text = (d.text == null ? '' : String(d.text)).replace(/\r\n?/g, '\n').replace(/\s+$/, '').slice(0, 2000);
+    if (!text.trim()) return null;
+    var created = Number(d.createdAt) || Date.now();
+    return {
+      id: str(d.id, 40) || newId('d'),
+      writer: WRITERS.indexOf(d.writer) !== -1 ? d.writer : WRITERS[0],
+      date: validDate(d.date) || today(),
+      text: text,
+      createdAt: created,
+      updatedAt: Number(d.updatedAt) || created
+    };
+  }
+
+  function newId(prefix) { return prefix + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+  /* ---------- 도우미 ---------- */
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1, 2) + '-' + pad(d.getDate(), 2);
+  }
+  function dateText(iso) {
+    if (!iso) return '';
+    var p = iso.split('-');
+    return p[0] + '. ' + Number(p[1]) + '. ' + Number(p[2]) + '.';
+  }
+  function dayText(iso) {
+    var p = iso.split('-');
+    var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    return dateText(iso) + ' ' + DAYS[d.getDay()] + '요일';
+  }
+  function kyoboUrl(b) { return KYOBO_SEARCH + encodeURIComponent(b.isbn || b.title); }
+  function findById(list, id) {
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return i;
+    return -1;
+  }
+  function closeSheets() {
+    Array.prototype.forEach.call(document.querySelectorAll('dialog.sheet[open]'), function (d) { d.close(); });
+  }
+
+  function coverEl(b, size) {
+    var el = h('div', { class: 'cover' + (size ? ' ' + size : '') },
+      h('div', { class: 'cover-gen' }, h('b', null, b.title || ''), h('em', null, b.author || '')));
+    var srcs = [];
+    if (/^\d{13}$/.test(b.isbn || '')) {
+      srcs.push(KYOBO_COVER + '200x0/pdt/' + b.isbn + '.jpg');
+      srcs.push(KYOBO_COVER + '458x0/pdt/' + b.isbn + '.jpg');
+    }
+    if (b.thumb) srcs.push(b.thumb);
+    if (srcs.length) {
+      var img = new Image();
+      var i = 0;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.referrerPolicy = 'no-referrer';
+      img.style.visibility = 'hidden';
+      img.onload = function () { img.style.visibility = ''; };
+      img.onerror = function () {
+        i += 1;
+        if (i < srcs.length) img.src = srcs[i];
+        else if (img.parentNode) img.parentNode.removeChild(img);
+      };
+      img.src = srcs[0];
+      el.appendChild(img);
+    }
+    return el;
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600);
+  }
+
+  /* ---------- 장 넘기기 ---------- */
+  function setPage(p, keepScroll) {
+    page = p === 'diary' ? 'diary' : 'books';
+    document.body.setAttribute('data-page', page);
+    $('pageBooks').hidden = page !== 'books';
+    $('pageDiary').hidden = page !== 'diary';
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (t) {
+      if (t.getAttribute('data-go') === page) t.setAttribute('aria-current', 'page');
+      else t.removeAttribute('aria-current');
+    });
+    applyTheme();
+    try { localStorage.setItem(PAGE_KEY, page); } catch (e) {}
+    updateBarLabel();
+    if (!keepScroll) window.scrollTo(0, 0);
+  }
+
+  function todayEntry() {
+    var t = today();
+    var found = store.diary.filter(function (d) { return d.date === t && d.writer === writer; });
+    found.sort(function (a, b) { return b.createdAt - a.createdAt; });
+    return found[0] || null;
+  }
+
+  function updateBarLabel() {
+    $('addBtn').textContent = page === 'books'
+      ? '읽은 책 기록하기'
+      : writer + '의 오늘 일기 ' + (todayEntry() ? '고치기' : '쓰기');
+  }
+
+  /* ---------- 그리기 ---------- */
+  function sortKey(b) { return (b.date || '0000-00-00') + '|' + pad(b.createdAt, 15); }
+
+  function render() {
+    applyTheme();
+    renderPlate();
+    renderBooks();
+    renderDiary();
+    updateBarLabel();
+    updateSyncLabel();
+    Array.prototype.forEach.call(document.querySelectorAll('.storage-notice'), function (n) {
+      n.hidden = persistent;
+    });
+  }
+
+  function renderPlate() {
+    $('plate').hidden = !photo;
+    if (photo) $('plateImg').src = photo;
+    else $('plateImg').removeAttribute('src');
+    $('photoOffBtn').hidden = !photo;
+  }
+
+  function renderBooks() {
+    var books = store.books;
+    $('titleBtn').textContent = store.title;
+    $('byline').textContent = store.byline;
+    $('byline').hidden = !store.byline;
+    $('seriesNo').textContent = pad(books.length, 3);
+    document.title = store.title + ' | 독서 기록 노트';
+
+    var thisYear = String(new Date().getFullYear());
+    var yearCount = books.filter(function (b) { return b.date.slice(0, 4) === thisYear; }).length;
+    $('tally').hidden = books.length === 0;
+    $('tally').textContent = '올해 ' + yearCount + '권, 모두 ' + books.length + '권을 읽었습니다.';
+    $('findWrap').hidden = books.length < 4;
+
+    var order = {};
+    books.slice().sort(function (a, b) {
+      var ka = (a.date || '9999') + '|' + pad(a.createdAt, 15);
+      var kb = (b.date || '9999') + '|' + pad(b.createdAt, 15);
+      return ka < kb ? -1 : ka > kb ? 1 : 0;
+    }).forEach(function (b, i) { order[b.id] = i + 1; });
+
+    var shelf = $('shelf');
+    shelf.textContent = '';
+
+    if (!books.length) {
+      shelf.appendChild(h('p', { class: 'empty' }, '아직 기록한 책이 없습니다.',
+        h('small', null, '아래 ‘읽은 책 기록하기’를 눌러 첫 책을 넣어 보세요.')));
+      return;
+    }
+
+    var q = $('findWrap').hidden ? '' : $('filter').value.trim().toLowerCase();
+    var list = books.filter(function (b) {
+      if (!q) return true;
+      return (b.title + ' ' + b.author + ' ' + b.publisher + ' ' + b.review).toLowerCase().indexOf(q) !== -1;
+    }).sort(function (a, b) {
+      var ka = sortKey(a), kb = sortKey(b);
+      return ka < kb ? 1 : ka > kb ? -1 : 0;
+    });
+
+    if (!list.length) {
+      shelf.appendChild(h('p', { class: 'empty' }, '찾는 기록이 없습니다.',
+        h('small', null, '다른 낱말로 찾아 보세요.')));
+      return;
+    }
+
+    var groups = [];
+    list.forEach(function (b) {
+      var y = b.date ? b.date.slice(0, 4) + '년' : '날짜 없음';
+      var g = groups[groups.length - 1];
+      if (!g || g.name !== y) { g = { name: y, items: [] }; groups.push(g); }
+      g.items.push(b);
+    });
+    groups.forEach(function (g) {
+      shelf.appendChild(h('div', { class: 'year' }, h('h2', null, g.name), h('span', null, g.items.length + '권')));
+      g.items.forEach(function (b) { shelf.appendChild(entryEl(b, order[b.id])); });
+    });
+  }
+
+  function entryEl(b, no) {
+    var open = function () { openBookSheet(b); };
+    var cover = coverEl(b);
+    cover.addEventListener('click', open);
+
+    var meta = [b.publisher, dateText(b.date)].filter(Boolean).join(', ');
+    var stars = null;
+    if (b.rating) {
+      stars = h('span', { class: 'entry-stars', 'aria-label': '별점 ' + b.rating + '점' },
+        '★★★★★'.slice(0, b.rating), h('i', null, '★★★★★'.slice(b.rating)));
+    }
+    var btn = h('button', { type: 'button', class: 'entry-open', onclick: open, 'aria-label': b.title + ' 기록 고치기' },
+      h('span', { class: 'entry-top' },
+        h('span', { class: 'entry-title' }, b.title),
+        h('span', { class: 'entry-no' }, pad(no, 3))),
+      b.author ? h('span', { class: 'entry-author' }, b.author) : null,
+      meta ? h('span', { class: 'entry-meta' }, meta) : null,
+      stars,
+      b.review
+        ? h('span', { class: 'entry-review' }, '“' + b.review + '”')
+        : h('span', { class: 'entry-review none' }, '한줄 감상평을 아직 쓰지 않았습니다.'));
+    var link = h('a', { class: 'kyobo-link', href: kyoboUrl(b), target: '_blank', rel: 'noopener' }, '교보문고에서 보기');
+    return h('article', { class: 'entry' }, cover, h('div', null, btn, link));
+  }
+
+  function buildWriters() {
+    var wrap = $('writers');
+    WRITERS.forEach(function (name) {
+      wrap.appendChild(h('button', {
+        type: 'button', 'data-writer': name, 'aria-pressed': 'false',
+        onclick: function () { setWriter(name); }
+      }, name));
+    });
+  }
+
+  function setWriter(name) {
+    writer = WRITERS.indexOf(name) !== -1 ? name : WRITERS[0];
+    try { localStorage.setItem(WRITER_KEY, writer); } catch (e) {}
+    renderDiary();
+    updateBarLabel();
+  }
+
+  function renderDiary() {
+    Array.prototype.forEach.call($('writers').children, function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-writer') === writer ? 'true' : 'false');
+    });
+
+    var stack = $('leafStack');
+    stack.textContent = '';
+    var mine = store.diary.filter(function (d) { return d.writer === writer; });
+
+    if (!mine.length) {
+      stack.appendChild(h('article', { class: 'leaf' },
+        h('div', { class: 'leaf-open' },
+          h('span', { class: 'leaf-date' }, dayText(today())),
+          h('span', { class: 'leaf-text none' }, '아직 쓴 일기가 없습니다.\n\n오늘 하루를\n몇 줄로 남겨 보세요.'),
+          h('span', { class: 'leaf-sign' }, '—' + writer))));
+      return;
+    }
+
+    mine.sort(function (a, b) {
+      var ka = a.date + '|' + pad(a.createdAt, 15), kb = b.date + '|' + pad(b.createdAt, 15);
+      return ka < kb ? 1 : ka > kb ? -1 : 0;
+    }).forEach(function (d) {
+      stack.appendChild(h('article', { class: 'leaf' },
+        h('button', {
+          type: 'button', class: 'leaf-open', 'aria-label': d.writer + ', ' + dayText(d.date) + ' 일기 고치기',
+          onclick: function () { openDiarySheet(d); }
+        },
+          h('span', { class: 'leaf-date' }, dayText(d.date)),
+          h('span', { class: 'leaf-text' }, d.text),
+          h('span', { class: 'leaf-sign' }, '—' + d.writer))));
+    });
+  }
+
+  /* ---------- 책 기록 시트 ---------- */
+  function buildStars() {
+    var wrap = $('stars');
+    for (var n = 1; n <= 5; n++) {
+      (function (n) {
+        wrap.appendChild(h('button', {
+          type: 'button', 'aria-label': '별 ' + n + '개', 'aria-pressed': 'false',
+          onclick: function () { setRating(rating === n ? 0 : n); }
+        }, '★'));
+      })(n);
+    }
+  }
+  function setRating(n) {
+    rating = n;
+    Array.prototype.forEach.call($('stars').children, function (btn, i) {
+      btn.classList.toggle('on', i < n);
+      btn.setAttribute('aria-pressed', i < n ? 'true' : 'false');
+    });
+  }
+  function isbnValue() { return $('fIsbn').value.replace(/[^0-9Xx]/g, ''); }
+
+  function refreshPreview() {
+    var box = $('preview');
+    box.textContent = '';
+    box.appendChild(coverEl({
+      title: $('fTitle').value.trim() || '제목',
+      author: $('fAuthor').value.trim(),
+      isbn: isbnValue(),
+      thumb: currentThumb
+    }, 'm'));
+  }
+  var previewTimer;
+  function queuePreview() { clearTimeout(previewTimer); previewTimer = setTimeout(refreshPreview, 450); }
+
+  function refreshKyoboFind() {
+    var word = $('q').value.trim() || $('fTitle').value.trim();
+    $('kyoboFind').href = word ? KYOBO_SEARCH + encodeURIComponent(word) : 'https://www.kyobobook.co.kr/';
+  }
+  function setStatus(msg) {
+    $('seekStatus').hidden = !msg;
+    $('seekStatus').textContent = msg || '';
+  }
+
+  function openBookSheet(book) {
+    editingId = book ? book.id : null;
+    $('bookSheetTitle').textContent = book ? '기록 고치기' : '읽은 책 기록하기';
+    $('seek').hidden = !!book;
+    $('q').value = '';
+    $('results').hidden = true;
+    $('results').textContent = '';
+    setStatus('');
+
+    $('fTitle').value = book ? book.title : '';
+    $('fAuthor').value = book ? book.author : '';
+    $('fPublisher').value = book ? book.publisher : '';
+    $('fIsbn').value = book ? book.isbn : '';
+    $('fDate').value = book ? book.date : today();
+    $('fReview').value = book ? book.review : '';
+    currentThumb = book ? book.thumb : '';
+    setRating(book ? book.rating : 0);
+    updateCount();
+    refreshPreview();
+    refreshKyoboFind();
+
+    $('deleteBtn').hidden = !book;
+    disarm($('deleteBtn'));
+    $('editLinks').hidden = !book;
+    if (book) $('kyoboOpen').href = kyoboUrl(book);
+
+    $('bookSheet').showModal();
+    $('bookSheet').querySelector('.sheet-body').scrollTop = 0;
+  }
+  function updateCount() { $('reviewCount').textContent = $('fReview').value.length + '/100'; }
+
+  // 두 번 눌러야 실행되는 버튼
+  var armedBtn = null, armTimer;
+  function disarm(btn) {
+    if (armedBtn === btn) { armedBtn = null; clearTimeout(armTimer); }
+    btn.textContent = btn.getAttribute('data-label') || btn.textContent;
+  }
+  function armOrGo(btn, go) {
+    if (armedBtn !== btn) {
+      if (!btn.getAttribute('data-label')) btn.setAttribute('data-label', btn.textContent);
+      armedBtn = btn;
+      btn.textContent = '한 번 더 누르면 ' + btn.getAttribute('data-label');
+      clearTimeout(armTimer);
+      armTimer = setTimeout(function () { disarm(btn); }, 3500);
+      return;
+    }
+    disarm(btn);
+    go();
+  }
+
+  /* ---------- 책 찾기 (공개 도서 검색) ---------- */
+  function findBooks() {
+    var q = $('q').value.trim();
+    if (!q) { $('q').focus(); return; }
+    var digits = q.replace(/[^0-9Xx]/g, '');
+    var isIsbn = /^[\d\s\-Xx]+$/.test(q) && (digits.length === 13 || digits.length === 10);
+    if (isIsbn) { $('fIsbn').value = digits; refreshPreview(); }
+
+    $('results').hidden = true;
+    $('results').textContent = '';
+    setStatus('찾는 중입니다.');
+    $('seekBtn').disabled = true;
+
+    var url = 'https://www.googleapis.com/books/v1/volumes?maxResults=8&printType=books&country=KR&q=' +
+      encodeURIComponent(isIsbn ? 'isbn:' + digits : q);
+
+    fetch(url).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }).then(function (data) {
+      var items = (data.items || []).map(function (it) {
+        var v = it.volumeInfo || {};
+        var isbn = '';
+        (v.industryIdentifiers || []).forEach(function (x) {
+          if (x.type === 'ISBN_13') isbn = x.identifier;
+        });
+        var thumb = (v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail)) || '';
+        return {
+          title: str(v.title, 120),
+          author: str((v.authors || []).join(', '), 80),
+          publisher: str(v.publisher, 60),
+          isbn: isbn,
+          thumb: thumb.replace(/^http:/, 'https:')
+        };
+      }).filter(function (b) { return b.title; });
+
+      if (!items.length) {
+        setStatus('찾은 책이 없습니다. 교보문고에서 찾아 제목과 ISBN을 아래 칸에 적어 주세요.');
+        return;
+      }
+      setStatus('기록할 책을 고르세요.');
+      var ul = $('results');
+      items.forEach(function (b) {
+        var sub = [b.author, b.publisher].filter(Boolean).join(', ');
+        ul.appendChild(h('li', null, h('button', { type: 'button', onclick: function () { pick(b); } },
+          coverEl(b, 'xs'),
+          h('span', null, h('strong', null, b.title), sub ? h('small', null, sub) : null))));
+      });
+      ul.hidden = false;
+    }).catch(function () {
+      setStatus('책 정보를 불러오지 못했습니다. 교보문고에서 찾아 제목과 ISBN을 아래 칸에 적어 주세요.');
+    }).then(function () { $('seekBtn').disabled = false; });
+  }
+
+  function pick(b) {
+    $('fTitle').value = b.title;
+    $('fAuthor').value = b.author;
+    $('fPublisher').value = b.publisher;
+    if (b.isbn) $('fIsbn').value = b.isbn;
+    currentThumb = b.thumb;
+    $('results').hidden = true;
+    setStatus('‘' + b.title + '’을 골랐습니다. 아래에서 고쳐 쓸 수 있습니다.');
+    refreshPreview();
+    refreshKyoboFind();
+    $('fReview').focus();
+  }
+
+  function submitBook(e) {
+    e.preventDefault();
+    var title = $('fTitle').value.trim();
+    if (!title) { toast('제목을 적어 주세요.'); $('fTitle').focus(); return; }
+    var idx = editingId ? findById(store.books, editingId) : -1;
+    var prev = idx >= 0 ? store.books[idx] : null;
+    var book = cleanBook({
+      id: prev ? prev.id : newId('b'),
+      title: title,
+      author: $('fAuthor').value,
+      publisher: $('fPublisher').value,
+      isbn: isbnValue(),
+      thumb: currentThumb,
+      date: $('fDate').value,
+      rating: rating,
+      review: $('fReview').value.replace(/\s*\n+\s*/g, ' '),
+      createdAt: prev ? prev.createdAt : Date.now(),
+      updatedAt: Date.now()
+    });
+    if (prev) store.books[idx] = book; else store.books.push(book);
+    save();
+    queue({ type: 'book', action: 'upsert', record: book });
+    render();
+    $('bookSheet').close();
+    toast('기록을 저장했습니다.');
+  }
+
+  function deleteBook() {
+    var id = editingId;
+    store.books = store.books.filter(function (b) { return b.id !== id; });
+    save();
+    queue({ type: 'book', action: 'delete', id: id });
+    render();
+    $('bookSheet').close();
+    toast('기록을 삭제했습니다.');
+  }
+
+  /* ---------- 일기 시트 ---------- */
+  function openDiarySheet(entry) {
+    editingDiaryId = entry ? entry.id : null;
+    var isToday = !entry || entry.date === today();
+    var who = entry ? entry.writer : writer;
+    $('diarySheetTitle').textContent = who + '의 ' + (entry ? (isToday ? '오늘 일기 고치기' : '일기 고치기') : '오늘 일기 쓰기');
+    $('dDate').value = entry ? entry.date : today();
+    $('dText').value = entry ? entry.text : '';
+    $('diaryDeleteBtn').hidden = !entry;
+    disarm($('diaryDeleteBtn'));
+    updateDiaryCount();
+    $('diarySheet').showModal();
+    $('diarySheet').querySelector('.sheet-body').scrollTop = 0;
+  }
+  function updateDiaryCount() { $('diaryCount').textContent = $('dText').value.length + '/1000'; }
+
+  function submitDiary(e) {
+    e.preventDefault();
+    if (!$('dText').value.trim()) { toast('일기를 한 줄이라도 적어 주세요.'); $('dText').focus(); return; }
+    var idx = editingDiaryId ? findById(store.diary, editingDiaryId) : -1;
+    var prev = idx >= 0 ? store.diary[idx] : null;
+    var entry = cleanDiary({
+      id: prev ? prev.id : newId('d'),
+      writer: prev ? prev.writer : writer,
+      date: $('dDate').value,
+      text: $('dText').value,
+      createdAt: prev ? prev.createdAt : Date.now(),
+      updatedAt: Date.now()
+    });
+    if (prev) store.diary[idx] = entry; else store.diary.push(entry);
+    save();
+    queue({ type: 'diary', action: 'upsert', record: entry });
+    render();
+    $('diarySheet').close();
+    toast('일기를 저장했습니다.');
+  }
+
+  function deleteDiary() {
+    var id = editingDiaryId;
+    var idx = findById(store.diary, id);
+    var who = idx >= 0 ? store.diary[idx].writer : writer;
+    store.diary = store.diary.filter(function (d) { return d.id !== id; });
+    save();
+    queue({ type: 'diary', action: 'delete', id: id, writer: who });
+    render();
+    $('diarySheet').close();
+    toast('일기를 삭제했습니다.');
+  }
+
+  /* ---------- 표지 제목 ---------- */
+  function openNameSheet() {
+    closeSheets();
+    $('nTitle').value = store.title;
+    $('nByline').value = store.byline;
+    $('nameSheet').showModal();
+  }
+  function settingsOp() {
+    return {
+      type: 'settings', action: 'set',
+      value: { title: store.title, byline: store.byline, sign: store.sign, theme: JSON.stringify(store.theme) }
+    };
+  }
+  function submitName(e) {
+    e.preventDefault();
+    var t = $('nTitle').value.trim();
+    if (!t) { toast('표지 제목을 적어 주세요.'); $('nTitle').focus(); return; }
+    store.title = t;
+    store.byline = $('nByline').value.trim();
+    save();
+    queue(settingsOp());
+    render();
+    $('nameSheet').close();
+    toast('제목을 저장했습니다.');
+  }
+
+  /* ---------- 설정: 색 고르기 ---------- */
+  var pick_ = { page: 'books', key: 'frame' };
+  var hsv = { h: 0, s: 0, v: 0 };
+  var themeTimer;
+
+  function buildSettings() {
+    var wrap = $('targets');
+    TARGETS.forEach(function (t) {
+      wrap.appendChild(h('button', {
+        type: 'button', 'data-page': t[0], 'data-key': t[1], 'aria-pressed': 'false',
+        onclick: function () { setTarget(t[0], t[1]); }
+      }, h('i'), t[2]));
+    });
+    var sw = $('swatches');
+    SWATCHES.forEach(function (c) {
+      var b = h('button', { type: 'button', 'aria-label': c[0] + ' 색으로', title: c[0], onclick: function () { setColor(c[1]); } });
+      b.style.background = c[1];
+      sw.appendChild(b);
+    });
+  }
+
+  function openSettings() {
+    closeSheets();
+    pick_ = { page: page, key: 'frame' };
+    hsv = hexToHsv(store.theme[page].frame);
+    drawPicker();
+    $('setSheet').showModal();
+    $('setSheet').querySelector('.sheet-body').scrollTop = 0;
+  }
+
+  function setTarget(p, key) {
+    pick_ = { page: p, key: key };
+    if (p !== page) setPage(p, true);
+    hsv = hexToHsv(store.theme[p][key]);
+    drawPicker();
+  }
+
+  function drawPicker() {
+    var hex = store.theme[pick_.page][pick_.key];
+    $('sv').style.background =
+      'linear-gradient(to top,#000,rgba(0,0,0,0)),linear-gradient(to right,#fff,' + hsvToHex(hsv.h, 1, 1) + ')';
+    $('svDot').style.left = (hsv.s * 100) + '%';
+    $('svDot').style.top = ((1 - hsv.v) * 100) + '%';
+    $('svDot').style.background = hex;
+    $('sv').setAttribute('aria-valuetext', hex);
+    $('hue').value = Math.round(hsv.h);
+    $('hexText').textContent = hex.toUpperCase();
+    Array.prototype.forEach.call($('targets').children, function (b) {
+      var p = b.getAttribute('data-page'), k = b.getAttribute('data-key');
+      b.firstChild.style.background = store.theme[p][k];
+      b.setAttribute('aria-pressed', p === pick_.page && k === pick_.key ? 'true' : 'false');
+    });
+  }
+
+  function commitColor(hex) {
+    store.theme[pick_.page][pick_.key] = hex;
+    applyTheme();
+    drawPicker();
+    clearTimeout(themeTimer);
+    themeTimer = setTimeout(function () { save(); queue(settingsOp()); }, 700);
+  }
+  function setColor(hex) { hsv = hexToHsv(hex); commitColor(hex); }
+
+  function svFromEvent(e) {
+    var r = $('sv').getBoundingClientRect();
+    hsv.s = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    hsv.v = Math.max(0, Math.min(1, 1 - (e.clientY - r.top) / r.height));
+    commitColor(hsvToHex(hsv.h, hsv.s, hsv.v));
+  }
+
+  function wirePicker() {
+    var sv = $('sv'), dragging = false;
+    sv.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      try { sv.setPointerCapture(e.pointerId); } catch (err) {}
+      svFromEvent(e);
+      e.preventDefault();
+    });
+    sv.addEventListener('pointermove', function (e) { if (dragging) svFromEvent(e); });
+    ['pointerup', 'pointercancel'].forEach(function (n) {
+      sv.addEventListener(n, function () { dragging = false; });
+    });
+    sv.addEventListener('keydown', function (e) {
+      var step = 0.03, used = true;
+      if (e.key === 'ArrowLeft') hsv.s = Math.max(0, hsv.s - step);
+      else if (e.key === 'ArrowRight') hsv.s = Math.min(1, hsv.s + step);
+      else if (e.key === 'ArrowUp') hsv.v = Math.min(1, hsv.v + step);
+      else if (e.key === 'ArrowDown') hsv.v = Math.max(0, hsv.v - step);
+      else used = false;
+      if (used) { e.preventDefault(); commitColor(hsvToHex(hsv.h, hsv.s, hsv.v)); }
+    });
+    $('hue').addEventListener('input', function () {
+      hsv.h = Math.min(359.9, Number(this.value) || 0);
+      commitColor(hsvToHex(hsv.h, hsv.s, hsv.v));
+    });
+    $('resetColor').addEventListener('click', function () {
+      setColor(DEFAULT_THEME[pick_.page][pick_.key]);
+    });
+  }
+
+  /* ---------- 설정: 표지 사진 ---------- */
+  function choosePhoto(file) {
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function () {
+      var scale = Math.min(1, 960 / Math.max(img.width, img.height));
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(img.width * scale));
+      c.height = Math.max(1, Math.round(img.height * scale));
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      var data;
+      try { data = c.toDataURL('image/jpeg', 0.82); } catch (e) { data = ''; }
+      if (!data) { toast('사진을 읽지 못했습니다.'); return; }
+      photo = data;
+      try { localStorage.setItem(PHOTO_KEY, data); }
+      catch (e) { toast('사진이 커서 이번에만 보입니다. 더 작은 사진을 골라 주세요.'); }
+      renderPlate();
+      if (page !== 'books') setPage('books', true);
+      $('setSheet').close();
+      toast('표지 사진을 바꿨습니다.');
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); toast('사진을 읽지 못했습니다.'); };
+    img.src = url;
+  }
+  function removePhoto() {
+    photo = '';
+    try { localStorage.removeItem(PHOTO_KEY); } catch (e) {}
+    renderPlate();
+    toast('표지 사진을 뺐습니다.');
+  }
+
+  /* ---------- 구글 시트와 맞추기 ---------- */
+  var syncing = false, syncAgain = false, syncState = 'idle', syncTimer, settingsPushed = false;
+
+  function queue(op) {
+    if (!sync.url) return;
+    sync.outbox.push(op);
+    saveSync();
+    updateSyncLabel();
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(syncNow, 700);
+  }
+
+  function allLocalOps() {
+    var ops = [];
+    store.books.forEach(function (b) { ops.push({ type: 'book', action: 'upsert', record: b }); });
+    store.diary.forEach(function (d) { ops.push({ type: 'diary', action: 'upsert', record: d }); });
+    return ops;
+  }
+
+  function adoptSettings(v) {
+    if (!v || !v.title) return false;
+    store.title = str(v.title, 40);
+    store.byline = str(v.byline, 24);
+    store.sign = str(v.sign, 24);
+    if (v.theme) {
+      try { store.theme = cleanTheme(typeof v.theme === 'string' ? JSON.parse(v.theme) : v.theme); } catch (e) {}
+    }
+    return true;
+  }
+
+  function applyLocal(op) {
+    if (!op) return;
+    if (op.type === 'settings') { adoptSettings(op.value); return; }
+    var name = op.type === 'book' ? 'books' : op.type === 'diary' ? 'diary' : '';
+    if (!name) return;
+    if (op.action === 'upsert') {
+      var rec = name === 'books' ? cleanBook(op.record) : cleanDiary(op.record);
+      if (!rec) return;
+      var i = findById(store[name], rec.id);
+      if (i >= 0) store[name][i] = rec; else store[name].push(rec);
+    } else if (op.action === 'delete') {
+      store[name] = store[name].filter(function (r) { return r.id !== op.id; });
+    }
+  }
+
+  function adoptServer(d) {
+    var books = (d.books || []).map(cleanBook).filter(Boolean);
+    var diary = (d.diary || []).map(cleanDiary).filter(Boolean);
+    // 시트가 비어 있고 휴대폰에만 기록이 있으면, 지우지 않고 시트로 올린다.
+    if (!books.length && !diary.length && (store.books.length || store.diary.length) && !sync.outbox.length) {
+      sync.outbox = allLocalOps();
+    } else {
+      store.books = books;
+      store.diary = diary;
+    }
+    var had = adoptSettings(d.settings);
+    var moved = migrateDefaults();
+    if ((!had || moved) && !settingsPushed) {
+      settingsPushed = true;
+      sync.outbox.push(settingsOp());
+    }
+  }
+
+  function post(payload) {
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 30000);
+    return fetch(sync.url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      if (!res.ok) throw new Error('http');
+      return res.text();
+    }).then(function (txt) {
+      clearTimeout(timer);
+      try { return JSON.parse(txt); } catch (e) { throw new Error('notjson'); }
+    }, function (err) { clearTimeout(timer); throw err; });
+  }
+
+  // 결과: { ok: true } 또는 { ok: false, code: 'password' | 'setup' | 'network' }
+  function syncNow() {
+    if (!sync.url) return Promise.resolve({ ok: false, code: 'off' });
+    if (syncing) { syncAgain = true; return Promise.resolve({ ok: false, code: 'busy' }); }
+    syncing = true;
+    syncState = 'busy';
+    updateSyncLabel();
+    var sent = sync.outbox.length;
+
+    return post({ password: sync.password, ops: sync.outbox.slice(0, sent) }).then(function (d) {
+      if (!d || !d.ok) return { ok: false, code: (d && d.error) || 'network' };
+      sync.outbox = sync.outbox.slice(sent);
+      sync.last = Date.now();
+      adoptServer(d);
+      sync.outbox.forEach(applyLocal);
+      saveSync();
+      save();
+      syncState = 'ok';
+      if (sync.outbox.length) syncAgain = true;
+      render();
+      if ($('setSheet').open) drawPicker();
+      return { ok: true };
+    }).catch(function () {
+      return { ok: false, code: 'network' };
+    }).then(function (result) {
+      syncing = false;
+      if (!result.ok) { syncState = 'fail'; updateSyncLabel(); syncAgain = false; return result; }
+      if (syncAgain) { syncAgain = false; return syncNow().then(function () { return result; }); }
+      return result;
+    });
+  }
+
+  function updateSyncLabel() {
+    var label;
+    if (!sync.url) label = '시트 연결';
+    else if (syncState === 'busy') label = '보내는 중';
+    else if (sync.outbox.length) label = '대기 ' + sync.outbox.length + '건';
+    else if (syncState === 'fail') label = '시트 끊김';
+    else label = '시트 저장됨';
+    $('syncBtn').textContent = label;
+  }
+
+  function timeText(ms) {
+    var d = new Date(ms);
+    return (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + pad(d.getHours(), 2) + ':' + pad(d.getMinutes(), 2);
+  }
+
+  function openSyncSheet() {
+    closeSheets();
+    $('sUrl').value = sync.url;
+    $('sPass').value = sync.password;
+    $('syncError').hidden = true;
+    $('syncOffBtn').hidden = !sync.url;
+    disarm($('syncOffBtn'));
+    $('syncGoBtn').disabled = false;
+    $('syncGoBtn').textContent = sync.url ? '시트와 맞추기' : '시트에 연결하기';
+    var note;
+    if (!sync.url) {
+      note = '구글 시트에 붙인 Apps Script를 웹앱으로 배포하고, 그 주소와 비밀번호를 적어 주세요. 주소는 이 휴대폰에만 기억합니다.';
+    } else {
+      note = '구글 시트에 연결되어 있습니다.' +
+        (sync.last ? ' 마지막으로 맞춘 때는 ' + timeText(sync.last) + '입니다.' : '') +
+        (sync.outbox.length ? ' 아직 보내지 못한 기록이 ' + sync.outbox.length + '건 있습니다.' : '');
+    }
+    $('syncNote').textContent = note;
+    $('syncSheet').showModal();
+  }
+
+  function submitSync(e) {
+    e.preventDefault();
+    var url = $('sUrl').value.trim();
+    var pass = $('sPass').value;
+    var err = $('syncError');
+    err.hidden = true;
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/[^\/\s]+\/exec$/.test(url)) {
+      err.textContent = '웹앱 주소는 https://script.google.com/macros/s/ 로 시작해 /exec 로 끝나야 합니다.';
+      err.hidden = false;
+      $('sUrl').focus();
+      return;
+    }
+    if (!pass) {
+      err.textContent = '비밀번호를 적어 주세요.';
+      err.hidden = false;
+      $('sPass').focus();
+      return;
+    }
+    var before = { url: sync.url, password: sync.password, outbox: sync.outbox.slice() };
+    var fresh = sync.url !== url;
+    sync.url = url;
+    sync.password = pass;
+    if (fresh) { sync.outbox = allLocalOps(); settingsPushed = false; }
+    saveSync();
+
+    var btn = $('syncGoBtn');
+    btn.disabled = true;
+    btn.textContent = '맞추는 중';
+    syncNow().then(function (r) {
+      btn.disabled = false;
+      btn.textContent = '시트와 맞추기';
+      if (r.ok) {
+        $('syncSheet').close();
+        toast('구글 시트와 맞췄습니다.');
+        return;
+      }
+      if (fresh) {
+        sync.url = before.url; sync.password = before.password; sync.outbox = before.outbox;
+        saveSync();
+        btn.textContent = sync.url ? '시트와 맞추기' : '시트에 연결하기';
+      }
+      updateSyncLabel();
+      err.textContent = r.code === 'password' ? '비밀번호가 맞지 않습니다.'
+        : r.code === 'setup' ? 'Apps Script 맨 위의 PASSWORD를 먼저 바꾸고, 새 버전으로 다시 배포해 주세요.'
+        : r.code === 'busy' ? '지금 맞추는 중입니다. 잠시 뒤 다시 눌러 주세요.'
+        : '시트에 닿지 못했습니다. 인터넷 연결과 웹앱 주소, 배포할 때 액세스 권한을 ‘모든 사용자’로 했는지 확인해 주세요.';
+      err.hidden = false;
+    });
+  }
+
+  function disconnectSync() {
+    sync.url = ''; sync.password = ''; sync.outbox = []; sync.last = 0;
+    syncState = 'idle';
+    saveSync();
+    updateSyncLabel();
+    $('syncSheet').close();
+    toast('연결을 끊었습니다. 기록은 휴대폰과 시트에 그대로 있습니다.');
+  }
+
+  /* ---------- 백업 ---------- */
+  function exportData() {
+    var name = '독서기록_' + today() + '.json';
+    var text = JSON.stringify({
+      app: 'dokseo-note', version: 3,
+      title: store.title, byline: store.byline, sign: store.sign, theme: store.theme,
+      books: store.books, diary: store.diary, photo: photo
+    }, null, 2);
+    var file;
+    try { file = new File([text], name, { type: 'application/json' }); } catch (e) { file = null; }
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: name }).catch(function () {});
+      return;
+    }
+    var url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    var a = h('a', { href: url, download: name });
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    toast('백업 파일을 저장했습니다.');
+  }
+
+  function importData(file) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var d = JSON.parse(reader.result);
+        var inBooks = Array.isArray(d) ? d : d.books;
+        var inDiary = Array.isArray(d) ? [] : (d.diary || []);
+        if (!Array.isArray(inBooks) && !Array.isArray(inDiary)) throw new Error('형식');
+        var n = 0;
+        (inBooks || []).map(cleanBook).filter(Boolean).forEach(function (b) {
+          var op = { type: 'book', action: 'upsert', record: b };
+          applyLocal(op); queue(op); n += 1;
+        });
+        var m = 0;
+        (Array.isArray(inDiary) ? inDiary : []).map(cleanDiary).filter(Boolean).forEach(function (x) {
+          var op = { type: 'diary', action: 'upsert', record: x };
+          applyLocal(op); queue(op); m += 1;
+        });
+        if (d.theme) { store.theme = cleanTheme(d.theme); queue(settingsOp()); }
+        if (typeof d.photo === 'string' && /^data:image\//.test(d.photo)) {
+          photo = d.photo;
+          try { localStorage.setItem(PHOTO_KEY, photo); } catch (e) {}
+        }
+        save();
+        render();
+        closeSheets();
+        toast('책 ' + n + '권, 일기 ' + m + '편을 불러왔습니다.');
+      } catch (e) {
+        toast('이 노트의 백업 파일이 아닙니다.');
+      }
+    };
+    reader.onerror = function () { toast('파일을 읽지 못했습니다.'); };
+    reader.readAsText(file);
+  }
+
+  /* ---------- 연결 ---------- */
+  function init() {
+    load();
+    buildStars();
+    buildWriters();
+    buildSettings();
+    wirePicker();
+    setPage(page, true);
+    render();
+
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (t) {
+      t.addEventListener('click', function () { setPage(t.getAttribute('data-go')); });
+    });
+    $('addBtn').addEventListener('click', function () {
+      if (page === 'books') openBookSheet(null);
+      else openDiarySheet(todayEntry());
+    });
+    $('titleBtn').addEventListener('click', openNameSheet);
+    $('renameBtn').addEventListener('click', openNameSheet);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-settings]'), function (b) {
+      b.addEventListener('click', openSettings);
+    });
+    $('exportBtn').addEventListener('click', exportData);
+    $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+    $('importFile').addEventListener('change', function () {
+      if (this.files && this.files[0]) importData(this.files[0]);
+      this.value = '';
+    });
+    $('photoBtn').addEventListener('click', function () { $('photoFile').click(); });
+    $('photoFile').addEventListener('change', function () {
+      if (this.files && this.files[0]) choosePhoto(this.files[0]);
+      this.value = '';
+    });
+    $('photoOffBtn').addEventListener('click', removePhoto);
+    $('filter').addEventListener('input', renderBooks);
+
+    $('seekBtn').addEventListener('click', findBooks);
+    $('q').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); findBooks(); }
+    });
+    $('q').addEventListener('input', refreshKyoboFind);
+    $('fTitle').addEventListener('input', function () { queuePreview(); refreshKyoboFind(); });
+    $('fAuthor').addEventListener('input', queuePreview);
+    $('fIsbn').addEventListener('input', queuePreview);
+    $('fReview').addEventListener('input', updateCount);
+    $('fReview').addEventListener('keydown', function (e) { if (e.key === 'Enter') e.preventDefault(); });
+    $('dText').addEventListener('input', updateDiaryCount);
+
+    $('bookForm').addEventListener('submit', submitBook);
+    $('deleteBtn').addEventListener('click', function () { armOrGo(this, deleteBook); });
+    $('diaryForm').addEventListener('submit', submitDiary);
+    $('diaryDeleteBtn').addEventListener('click', function () { armOrGo(this, deleteDiary); });
+    $('nameForm').addEventListener('submit', submitName);
+
+    $('syncBtn').addEventListener('click', openSyncSheet);
+    $('openSyncBtn').addEventListener('click', openSyncSheet);
+    $('syncForm').addEventListener('submit', submitSync);
+    $('syncOffBtn').addEventListener('click', function () { armOrGo(this, disconnectSync); });
+
+    Array.prototype.forEach.call(document.querySelectorAll('dialog.sheet'), function (dlg) {
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+      dlg.querySelector('[data-close]').addEventListener('click', function () { dlg.close(); });
+    });
+
+    // 열 때, 다시 돌아올 때, 인터넷이 돌아올 때 시트와 맞춘다.
+    if (sync.url) syncNow();
+    window.addEventListener('online', function () { syncNow(); });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible' && sync.url &&
+          (sync.outbox.length || Date.now() - sync.last > 60000)) syncNow();
+    });
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
