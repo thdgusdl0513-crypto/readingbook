@@ -28,7 +28,7 @@
   @media (max-width: 640px) {
     .max-w-6xl { padding-left: .75rem !important; padding-right: .75rem !important; }
     .tab-btn { padding-left: .9rem !important; padding-right: .9rem !important; }
-    input, select, textarea { font-size: 16px !important; }
+    input, select, textarea { font-size:18.67px !important; }
   }
   /* ===== 귀여운 테마 ===== */
   body { background: #f3faf8 !important; }
@@ -36,10 +36,10 @@
   [class*="bg-[#0f2747]"] { background: linear-gradient(135deg, #a5e0ff, #bdf0cd) !important; color: #12343b !important; font-weight: 700; }
   header { background: linear-gradient(120deg, #cdeeff, #d5f5e0 60%, #eaf9c9) !important; color: #12343b !important; box-shadow: 0 4px 16px rgba(56, 189, 248, .22); }
   header .text-slate-300 { color: #12343b !important; }
-  header h1 { font-size: 1.6rem; }
+  header h1 { font-size:1.767rem; }
   #ddays span { border-radius: 9999px !important; box-shadow: 0 2px 6px rgba(0, 0, 0, .12); }
   nav[role=tablist] { gap: .4rem; padding-bottom: .75rem; }
-  .tab-btn { border-radius: 9999px !important; background: rgba(255, 255, 255, .5); color: #12343b !important; padding-top: .45rem !important; padding-bottom: .45rem !important; font-size: .95rem; }
+  .tab-btn { border-radius: 9999px !important; background: rgba(255, 255, 255, .5); color: #12343b !important; padding-top: .45rem !important; padding-bottom: .45rem !important; font-size:1.117rem; }
   .tab-btn:hover { background: rgba(255, 255, 255, .85); }
   .tab-btn.active { background: #fff !important; color: #0b7285 !important; box-shadow: 0 3px 10px rgba(14, 165, 233, .25); font-weight: 400; }
   .rounded-xl { border-radius: 1.25rem !important; }
@@ -62,10 +62,10 @@
   .text-slate-600 { color: #334155 !important; }
   ::placeholder { color: #64748b !important; opacity: 1; }
   #lock form, #lock h2 { color: #12343b !important; }
-  #lock input[type=password], #lock input[type=text] { color: #111827 !important; background: #fff !important; border: 2px solid #94a3b8 !important; font-size: 18px !important; letter-spacing: .05em; }
+  #lock input[type=password], #lock input[type=text] { color: #111827 !important; background: #fff !important; border: 2px solid #94a3b8 !important; font-size:20.67px !important; letter-spacing: .05em; }
   #lock input:focus { border-color: #0ea5e9 !important; }
-  #lockMsg { color: #334155 !important; font-size: .95rem; line-height: 1.5; }
-  #lockCancel, #lockReset, #lockSkip { color: #12343b !important; text-decoration: underline; font-size: .85rem; }
+  #lockMsg { color: #334155 !important; font-size:1.117rem; line-height: 1.5; }
+  #lockCancel, #lockReset, #lockSkip { color: #12343b !important; text-decoration: underline; font-size:1.017rem; }
   #homeCal .hc-cell { min-height: 62px; }
   @media (max-width: 640px) { #homeCal .hc-cell { min-height: 50px; } }
   /* 일정 추가: 날짜·시간 칸이 겹치지 않게 */
@@ -83,50 +83,61 @@
   #homeMeal { --ink:#17323d; --sub:#5b7480; --line:#cfe6ea; --accent:#0e8fa8; --accent-soft:#dff4f8; --today:#0d9488; --today-soft:#d9f5ee; --warn:#d64545; --warn-soft:#fdeaea; --chip:#e6f4f7; --shadow:0 1px 2px rgba(14,100,120,.06),0 3px 10px rgba(14,100,120,.06); background:#f2fbfc; color:var(--ink); }
   #homeMeal button { font: inherit; cursor: pointer; }
   #homeMeal .ml-top { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
-  #homeMeal .ml-logo { width:28px; height:28px; border-radius:9px; background:var(--accent); display:grid; place-items:center; font-size:15px; flex:none; }
-  #homeMeal .ml-title { font-size:15px; font-weight:800; letter-spacing:-.02em; margin:0; }
-  #homeMeal .ml-sub { font-size:11px; color:var(--sub); margin:0; }
+  #homeMeal .ml-logo { width:28px; height:28px; border-radius:9px; background:var(--accent); display:grid; place-items:center; font-size:17.67px; flex:none; }
+  #homeMeal .ml-title { font-size:17.67px; font-weight:800; letter-spacing:-.02em; margin:0; }
+  #homeMeal .ml-sub { font-size:13.67px; color:var(--sub); margin:0; }
   #homeMeal .ml-bar { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
   #homeMeal .ml-nav { display:flex; align-items:center; gap:6px; }
-  #homeMeal .ml-arrow { width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:#fff; font-size:14px; }
-  #homeMeal .ml-label { font-size:14px; font-weight:800; min-width:90px; text-align:center; }
-  #homeMeal .ml-btn { border:1px solid var(--line); background:#fff; border-radius:10px; padding:4px 9px; font-size:12px; font-weight:600; }
+  #homeMeal .ml-arrow { width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:#fff; font-size:16.67px; }
+  #homeMeal .ml-label { font-size:16.67px; font-weight:800; min-width:90px; text-align:center; }
+  #homeMeal .ml-btn { border:1px solid var(--line); background:#fff; border-radius:10px; padding:4px 9px; font-size:14.67px; font-weight:600; }
   #homeMeal .ml-btn:hover { border-color:var(--accent); }
   #homeMeal .ml-tabs { display:flex; background:var(--chip); border-radius:10px; padding:3px; }
-  #homeMeal .ml-tabs button { border:0; background:transparent; padding:3px 9px; border-radius:8px; font-size:12px; font-weight:600; color:var(--sub); }
+  #homeMeal .ml-tabs button { border:0; background:transparent; padding:3px 9px; border-radius:8px; font-size:14.67px; font-weight:600; color:var(--sub); }
   #homeMeal .ml-tabs button.on { background:#fff; color:var(--ink); box-shadow:var(--shadow); }
   #homeMeal details.ml-al { background:#fff; border:1px solid var(--line); border-radius:10px; padding:5px 10px; margin-bottom:8px; }
-  #homeMeal details.ml-al summary { cursor:pointer; font-weight:700; font-size:12px; list-style:none; display:flex; justify-content:space-between; }
+  #homeMeal details.ml-al summary { cursor:pointer; font-weight:700; font-size:14.67px; list-style:none; display:flex; justify-content:space-between; }
   #homeMeal details.ml-al summary::-webkit-details-marker { display:none; }
   #homeMeal .ml-cnt { color:var(--warn); font-weight:600; }
   #homeMeal .ml-chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-  #homeMeal .ml-chips button { border:1px solid var(--line); background:var(--chip); border-radius:999px; padding:3px 10px; font-size:12px; }
+  #homeMeal .ml-chips button { border:1px solid var(--line); background:var(--chip); border-radius:999px; padding:3px 10px; font-size:14.67px; }
   #homeMeal .ml-chips button.on { background:var(--warn-soft); border-color:var(--warn); color:var(--warn); font-weight:700; }
-  #homeMeal .ml-hint { font-size:11px; color:var(--sub); margin:6px 0 0; }
+  #homeMeal .ml-hint { font-size:13.67px; color:var(--sub); margin:6px 0 0; }
   #homeMeal .ml-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
   @media (max-width:900px) { #homeMeal .ml-grid { grid-template-columns:1fr; } }
   #homeMeal .ml-day { background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; min-width:0; }
   #homeMeal .ml-day.today { border:2px solid var(--today); }
   #homeMeal .ml-dh { padding:6px 10px; display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); }
   #homeMeal .ml-day.today .ml-dh { background:var(--today-soft); }
-  #homeMeal .ml-dow { font-weight:800; font-size:13px; }
-  #homeMeal .ml-date { color:var(--sub); font-size:11px; }
-  #homeMeal .ml-badge { background:var(--today); color:#fff; font-size:10px; font-weight:700; padding:2px 6px; border-radius:999px; margin-left:6px; vertical-align:2px; }
+  #homeMeal .ml-dow { font-weight:800; font-size:15.67px; }
+  #homeMeal .ml-date { color:var(--sub); font-size:13.67px; }
+  #homeMeal .ml-badge { background:var(--today); color:#fff; font-size:12.67px; font-weight:700; padding:2px 6px; border-radius:999px; margin-left:6px; vertical-align:2px; }
   #homeMeal .ml-meal { padding:6px 10px; }
   #homeMeal .ml-meal + .ml-meal { border-top:1px dashed var(--line); }
   #homeMeal .ml-mt { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
-  #homeMeal .ml-mt b { font-size:11px; background:var(--accent-soft); color:var(--accent); padding:2px 8px; border-radius:6px; }
-  #homeMeal .ml-mt span { font-size:11px; color:var(--sub); }
+  #homeMeal .ml-mt b { font-size:13.67px; background:var(--accent-soft); color:var(--accent); padding:2px 8px; border-radius:6px; }
+  #homeMeal .ml-mt span { font-size:13.67px; color:var(--sub); }
   #homeMeal ul.ml-dishes { list-style:none; margin:0; padding:0; }
-  #homeMeal ul.ml-dishes li { font-size:12px; line-height:1.35; padding:0; display:flex; gap:6px; align-items:baseline; flex-wrap:wrap; }
-  #homeMeal ul.ml-dishes li .al { font-size:10px; color:var(--sub); }
+  #homeMeal ul.ml-dishes li { font-size:14.67px; line-height:1.35; padding:0; display:flex; gap:6px; align-items:baseline; flex-wrap:wrap; }
+  #homeMeal ul.ml-dishes li .al { font-size:12.67px; color:var(--sub); }
   #homeMeal ul.ml-dishes li.hit { color:var(--warn); font-weight:700; }
   #homeMeal ul.ml-dishes li.hit .al { color:var(--warn); }
-  #homeMeal .ml-empty { padding:10px 10px; color:var(--sub); font-size:13px; text-align:center; }
-  #homeMeal .ml-more { margin:2px 12px 10px; align-self:flex-start; border:0; background:none; color:var(--sub); font-size:11px; text-decoration:underline; padding:0; }
-  #homeMeal .ml-extra { margin:0 12px 10px; font-size:11px; color:var(--sub); background:var(--chip); border-radius:8px; padding:7px 9px; white-space:pre-line; }
-  #homeMeal .ml-note { font-size:12px; color:var(--sub); margin:10px 0 0; }
-  #homeMeal .ml-err { background:var(--warn-soft); color:var(--warn); border-radius:10px; padding:8px 12px; font-size:12px; margin-top:10px; }
+  #homeMeal .ml-empty { padding:10px 10px; color:var(--sub); font-size:15.67px; text-align:center; }
+  #homeMeal .ml-more { margin:2px 12px 10px; align-self:flex-start; border:0; background:none; color:var(--sub); font-size:13.67px; text-decoration:underline; padding:0; }
+  #homeMeal .ml-extra { margin:0 12px 10px; font-size:13.67px; color:var(--sub); background:var(--chip); border-radius:8px; padding:7px 9px; white-space:pre-line; }
+  #homeMeal .ml-note { font-size:14.67px; color:var(--sub); margin:10px 0 0; }
+  #homeMeal .ml-err { background:var(--warn-soft); color:var(--warn); border-radius:10px; padding:8px 12px; font-size:14.67px; margin-top:10px; }
+details.fold>summary{list-style:none}details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;color:#0e8fa8}details.fold:not([open])>summary::before{content:"▸"}
+/* 글씨 +2pt (화면용) */
+@media screen {
+  .max-w-6xl{max-width:min(96vw,1760px)!important}
+  body { font-size: 18.67px; }
+  .text-\[10px\]{font-size:12.67px!important}.text-\[11px\]{font-size:13.67px!important;line-height:1.4}
+  .text-xs{font-size:14.67px!important;line-height:1.5!important}.text-sm{font-size:16.67px!important;line-height:1.55!important}
+  .text-base{font-size:18.67px!important;line-height:1.6!important}.text-lg{font-size:20.67px!important;line-height:1.5!important}
+  .text-xl{font-size:22.67px!important;line-height:1.4!important}.text-2xl{font-size:26.67px!important;line-height:1.35!important}
+}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen">
@@ -141,7 +152,7 @@
     <button id="lockCancel" type="button" class="hidden w-full text-sm text-slate-500">취소</button>
     <button id="lockSkip" type="button" class="hidden w-full text-xs text-slate-500 hover:text-slate-800">비밀번호 없이 사용</button>
     <button id="lockReset" type="button" class="hidden w-full text-xs text-slate-400 hover:text-red-600">비밀번호를 잊으셨나요? 초기화</button>
-    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 저장공간 분리</p>
+    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 저장공간 분리 · 상담 신청 · 생기부 AI · Gemini v3 · 글씨+2pt · 넓은 화면 · 홈 접기 · 명단·자율자치</p>
   </form>
 </div>
 
@@ -195,19 +206,18 @@
         <div class="grid gap-5 lg:grid-cols-2 items-start">
       <div class="space-y-5 min-w-0">
         <div id="dashTasks" class="bg-white rounded-xl border border-slate-200 p-4 md:p-5"></div>
-        <div id="homeCal" class="bg-white rounded-xl border border-slate-200 p-3 md:p-4"></div>
+        <div id="homeRsv" class="hidden bg-white rounded-xl border border-slate-200 p-4 md:p-5"></div>
+        <details class="fold bg-white rounded-xl border border-slate-200" id="fold-cal" open><summary class="fold-sum px-4 py-3 md:px-5 font-bold text-lg cursor-pointer select-none">📅 학사일정 달력</summary><div id="homeCal" class="p-3 md:p-4 pt-0"></div></details>
       </div>
       <div class="space-y-5 min-w-0">
-        <div class="bg-white rounded-xl border border-slate-200 p-4 md:p-5">
-          <div class="flex items-center gap-2 flex-wrap mb-2"><h2 class="font-bold text-lg mr-auto">🧑‍🏫 교사 시간표</h2><select id="schTeacher" class="border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"></select><button id="schMeBtn" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schEditT" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schResetT" type="button" class="text-xs text-slate-600 hover:text-red-600 underline">수정 지우기</button></div>
+        <details class="fold bg-white rounded-xl border border-slate-200" id="fold-tt" open><summary class="fold-sum px-4 py-3 md:px-5 font-bold text-lg cursor-pointer select-none">🧑‍🏫 교사 시간표</summary><div class="px-4 pb-4 md:px-5 md:pb-5">
+          <div class="flex items-center gap-2 flex-wrap mb-2"><span class="mr-auto"></span><select id="schTeacher" class="border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"></select><button id="schMeBtn" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schEditT" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schResetT" type="button" class="text-xs text-slate-600 hover:text-red-600 underline">수정 지우기</button></div>
           <div class="flex items-center gap-2 flex-wrap text-xs mb-2"><label class="font-bold">📂 교사별 시간표 파일<input id="schFileT" type="file" accept=".xlsx,.xls" class="ml-1 text-xs"></label><span id="schInfoT" class="text-slate-600"></span></div>
-          <div id="schT" class="overflow-x-auto"></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 md:p-5">
-          <div class="flex items-center gap-2 flex-wrap mb-2"><h2 class="font-bold text-lg mr-auto">🏫 학급 시간표</h2><select id="schClass" class="border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"></select><button id="schClsBtn" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schEditC" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schResetC" type="button" class="text-xs text-slate-600 hover:text-red-600 underline">수정 지우기</button></div>
+          <div id="schT" class="overflow-x-auto"></div></div></details>
+        <details class="fold bg-white rounded-xl border border-slate-200" id="fold-cl" open><summary class="fold-sum px-4 py-3 md:px-5 font-bold text-lg cursor-pointer select-none">🏫 학급 시간표</summary><div class="px-4 pb-4 md:px-5 md:pb-5">
+          <div class="flex items-center gap-2 flex-wrap mb-2"><span class="mr-auto"></span><select id="schClass" class="border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"></select><button id="schClsBtn" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schEditC" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-2.5 py-1.5 text-xs whitespace-nowrap"></button><button id="schResetC" type="button" class="text-xs text-slate-600 hover:text-red-600 underline">수정 지우기</button></div>
           <div class="flex items-center gap-2 flex-wrap text-xs mb-2"><label class="font-bold">📂 전체 학급 시간표 파일<input id="schFileC" type="file" accept=".xlsx,.xls" class="ml-1 text-xs"></label><span id="schInfoC" class="text-slate-600"></span></div>
-          <div id="schC" class="overflow-x-auto"></div>
-        </div>
+          <div id="schC" class="overflow-x-auto"></div></div></details>
       </div>
     </div>
     <div id="homeMeal" class="rounded-xl border border-sky-200 p-3 md:p-4 mt-5"></div>
@@ -289,8 +299,10 @@
       <div id="recSubRow" class="hidden flex gap-2 flex-wrap items-center">
         <select id="recSub" class="border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></select><button id="recSubDel" type="button" class="text-xs text-slate-400 hover:text-red-600">선택 삭제</button>
         <input id="recSubName" class="border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><button id="recSubAdd" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm whitespace-nowrap">추가</button>
+        <label class="border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm whitespace-nowrap cursor-pointer bg-white">📂 명단 올리기<input id="recRostFile" type="file" accept=".xlsx,.xls,.csv" class="hidden"></label><button id="recRostDel" type="button" class="text-xs text-slate-400 hover:text-red-600">명단 지우기</button><span id="recRostInfo" class="text-xs text-slate-500 basis-full"></span>
       </div>
     </div>
+    <div id="recCh" class="hidden bg-white rounded-xl border border-slate-200 p-4 mt-5"></div>
     <div class="grid lg:grid-cols-[240px_1fr] gap-5 mt-5">
       <div id="recList" class="bg-white rounded-xl border border-slate-200 p-2 max-h-[70vh] overflow-y-auto"></div>
       <div class="bg-white rounded-xl border border-slate-200 p-5">
@@ -298,12 +310,89 @@
         <textarea id="recText" rows="12" disabled class="w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></textarea>
         <div class="flex items-center gap-3 mt-2 flex-wrap"><span id="recCount" class="text-xs text-slate-500"></span><button id="recCopy" type="button" class="ml-auto border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm whitespace-nowrap">복사</button><button id="recAll" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm whitespace-nowrap">전체 복사 (연말용)</button></div>
         <p id="recHint" class="text-xs text-emerald-600 mt-2"></p>
+        <div class="mt-5 pt-4 border-t border-slate-200 space-y-2">
+          <div class="font-bold text-sm">✨ AI로 초안 쓰기 <span class="font-normal text-xs text-slate-500">(요청문을 만들어 드려요 · 결과를 위 칸에 붙여넣기)</span></div>
+          <details id="recGemDet" class="rounded-lg border border-sky-200 bg-sky-50 p-3 text-xs">
+            <summary class="font-bold cursor-pointer text-sm">🔑 Gemini 연결 설정 · 사용 방법 <span id="recGemState" class="font-normal text-slate-500"></span></summary>
+            <div class="mt-3 space-y-3">
+              <ol class="list-decimal ml-5 space-y-1 text-slate-700">
+                <li><b>Google AI Studio</b>(aistudio.google.com)에 접속해 구글 계정으로 로그인합니다.</li>
+                <li>화면의 <b>"API 키 받기"(Get API key)</b> 메뉴에서 새 키를 만들고 복사합니다. (메뉴 이름은 바뀔 수 있어요)</li>
+                <li>아래 <b>API 키</b> 칸에 붙여넣고 <b>연결 테스트</b>를 누릅니다. "연결됨"이 나오면 끝입니다. 키는 <b>이 컴퓨터(브라우저)에만</b> 저장됩니다.</li>
+                <li>학생을 고르고 관찰 메모를 적은 뒤 <b>✨ AI로 바로 작성</b>을 누르면 초안이 아래에 나옵니다. 마음에 들면 <b>위 입력칸에 넣기</b>로 옮겨 다듬습니다.</li>
+              </ol>
+              <label class="block">API 키<input id="recGemKey" type="password" autocomplete="off" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-white text-sm" placeholder="AIza..."></label>
+              <label class="block">모델 이름<input id="recGemModel" list="recGemList" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-white text-sm" placeholder="gemini-2.5-flash"></label>
+              <div class="flex items-center gap-2"><button id="recGemTest" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 font-bold">연결 테스트</button><button id="recGemModels" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 font-bold">모델 목록 불러오기</button><button id="recGemClear" type="button" class="text-slate-500 underline">키 지우기</button><datalist id="recGemList"></datalist><span id="recGemMsg" class="text-slate-600"></span></div>
+              <ul class="list-disc ml-5 space-y-1 text-slate-600">
+                <li>무료 사용량에는 한도가 있어서, 한도를 넘으면 잠시 뒤에 다시 시도해야 할 수 있습니다. 요금·한도 정책은 구글이 바꿀 수 있으니 AI Studio 안내를 확인하세요.</li>
+                <li>모델 이름은 구글이 새 모델을 내면 바뀝니다. "모델을 찾을 수 없다"는 오류가 나오면 AI Studio에서 쓸 수 있는 모델 이름으로 바꿔 입력하세요.</li>
+                <li><b>개인정보:</b> 보낸 내용은 구글 서버로 전송됩니다. 학생 이름·학번은 기본으로 "학생"으로 바꿔 보내지만, 메모 속 다른 개인정보(전화번호, 가정 사정 등)는 그대로 가니 필요한 내용만 적으세요. 학교나 교육청의 AI 사용 지침이 있다면 따라 주세요.</li>
+                <li>키는 비밀번호처럼 다루세요. 다른 사람에게 알려주거나 메신저·메일로 보내지 마세요. 공유용 프로그램은 선생님마다 <b>각자 자기 키</b>를 만들어 입력해야 합니다.</li>
+                <li>AI가 쓴 글은 초안입니다. 사실과 다른 내용이 없는지, 학교의 생활기록부 기재요령에 맞는지 꼭 확인한 뒤 사용하세요.</li>
+              </ul>
+            </div>
+          </details>
+          <label id="recAiCtxL" class="block text-xs">활동·교과 맥락 (선택)<input id="recAiCtx" disabled class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm" placeholder="예: 모둠 프로젝트 수업, 학급 환경미화 활동 등"></label>
+          <label class="block text-xs">관찰·활동 메모 (이 학생에 대해 기억나는 내용을 그대로)<textarea id="recAiMemo" rows="5" disabled class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm" placeholder="예: 모둠 발표에서 자료조사를 맡아 통계 자료를 찾아 정리함. 처음엔 발표를 어려워했으나 두 번째 발표에서 먼저 손을 들고 설명함."></textarea></label>
+          <div class="flex items-center gap-3 flex-wrap text-xs">
+            <label class="flex items-center gap-1">분량 <input id="recAiLen" type="number" min="100" max="1500" value="500" class="w-20 border border-slate-300 rounded px-2 py-1 bg-slate-50"> 자 이내</label>
+            <label class="flex items-center gap-1"><input id="recAiHide" type="checkbox" checked> 학생 이름·학번 빼기</label>
+            <button id="recAiBtn" type="button" disabled class="ml-auto bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg px-3 py-2 text-sm disabled:opacity-40">요청문만 복사(직접 붙여넣기)</button>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button id="recGemBtn" type="button" disabled class="bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg px-3 py-2 text-sm disabled:opacity-40">✨ AI로 바로 작성 (Gemini)</button>
+            <span id="recGemRun" class="text-xs text-slate-500"></span>
+          </div>
+          <textarea id="recAiOut" rows="6" class="w-full border border-slate-300 rounded-lg px-3 py-2 bg-white text-sm hidden" placeholder="AI가 쓴 초안이 여기에 나옵니다."></textarea>
+          <div id="recAiOutRow" class="hidden flex items-center gap-2 text-xs"><span id="recAiOutCnt" class="text-slate-500"></span><button id="recAiUse" type="button" class="ml-auto border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 font-bold">위 입력칸에 넣기</button></div>
+          <textarea id="recAiBox" readonly rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-xs" placeholder="복사한 요청문이 여기에 표시됩니다. 사용하시는 AI 채팅창에 붙여넣고, AI가 써 준 글을 위의 큰 입력칸에 붙여넣어 다듬으세요."></textarea>
+          <p id="recAiHint" class="text-xs text-emerald-600"></p>
+          <p class="text-xs text-slate-500">AI 결과는 초안입니다. 사실과 다른 내용이 없는지, 학교의 생활기록부 기재요령에 맞는지 꼭 확인해 주세요. 이름을 빼도 메모 속 다른 개인정보는 그대로 전달되니 필요한 내용만 적으세요.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- 상담 관리자 -->
   <section id="tab-counsel" class="tab-panel hidden">
+    <details id="rsvDet" class="bg-white rounded-xl border border-slate-200 p-5 mb-6">
+      <summary class="font-bold text-lg cursor-pointer">📅 상담 신청 받기 <span class="text-xs font-normal text-slate-500">(학생 신청 → 선생님 승인)</span> <span id="rsvBadge" class="ml-1 text-xs font-bold text-rose-600"></span></summary>
+      <div class="mt-4 grid lg:grid-cols-2 gap-6 text-sm">
+        <div class="space-y-3">
+          <h3 class="font-bold">1. 연결 설정</h3>
+          <label class="block">웹 앱 주소 (상담 신청용 Apps Script)<input id="rsvUrl" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50" placeholder="https://script.google.com/macros/s/.../exec"></label>
+          <label class="block">관리 암호<input id="rsvTok" type="password" autocomplete="off" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></label>
+          <label class="block">학생 신청 페이지 주소 (GitHub 등에 올린 reservation 페이지)<input id="rsvPage" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50" placeholder="https://아이디.github.io/reservation/"></label>
+          <div class="flex flex-wrap gap-2">
+            <button id="rsvLink" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">🔗 학생용 링크 복사</button>
+            <button id="rsvRefresh" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">🔄 신청 새로고침</button>
+            <button id="rsvRoster" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">📋 명단 올리기(본인 확인용)</button>
+            <button id="rsvRosterOff" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">명단 해제</button>
+          </div>
+          <p id="rsvMsg" class="text-xs text-slate-500">웹 앱 주소와 관리 암호를 넣으면 연결됩니다. 설정 방법은 gyomu-reserve.gs 파일 맨 위 설명을 보세요.</p>
+          <h3 class="font-bold pt-2">2. 상담 시간 열기</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <label>시작 날짜<input id="rsvFrom" type="date" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></label>
+            <label>끝 날짜<input id="rsvTo" type="date" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></label>
+          </div>
+          <div class="flex gap-3 flex-wrap" id="rsvDays"></div>
+          <div class="grid grid-cols-3 gap-3">
+            <label>시작<input id="rsvStart" type="time" value="12:40" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
+            <label>끝<input id="rsvEnd" type="time" value="13:00" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
+            <label>이름<input id="rsvName" value="점심 상담" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
+          </div>
+          <button id="rsvAdd" type="button" class="w-full bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg py-2">＋ 상담 시간 추가</button>
+          <div class="text-xs text-slate-500">같은 날짜·시작 시간은 한 번만 추가됩니다. 변경하면 자동으로 신청 페이지에 반영됩니다.</div>
+        </div>
+        <div class="space-y-3">
+          <h3 class="font-bold">3. 신청 승인</h3>
+          <div id="rsvReqList" class="space-y-2"></div>
+          <h3 class="font-bold pt-2">열어 둔 상담 시간</h3>
+          <div id="rsvSlotList" class="space-y-1 max-h-72 overflow-auto"></div>
+        </div>
+      </div>
+    </details>
     <div class="grid lg:grid-cols-[380px_1fr] gap-6 items-start">
       <div class="space-y-6">
       <form id="cForm" class="bg-white rounded-xl border border-slate-200 p-5 space-y-3">
@@ -609,7 +698,7 @@
       </div>
       <p class="text-xs text-slate-500 mt-2">초기화는 학생·상담·조퇴 기록을 모두 지웁니다(D-day는 유지). 먼저 백업 파일을 저장하세요.</p>
     </section>
-    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 저장공간 분리</p>
+    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 저장공간 분리 · 상담 신청 · 생기부 AI · Gemini v3 · 명단·자율자치</p>
   </div>
 </dialog>
 
@@ -2929,8 +3018,9 @@ const bytesOf = t => [...t].reduce((a, c) => a + (c === '\n' ? 2 : c.charCodeAt(
 const updRecCount = () => { const t = $('recText').value; $('recCount').textContent = `${[...t].length}자 · 약 ${bytesOf(t)}바이트 (한글 3바이트 기준)`; };
 function renderRecList() {
   const box = $('recList'); box.innerHTML = '';
-  if (!students.length) { box.innerHTML = '<p class="p-4 text-sm text-slate-500">학생 기록 관리 탭에서 학생을 먼저 등록하세요.</p>'; return; }
-  sorted().forEach(s => {
+  const ppl = recPeople();
+  if (!ppl.length) { box.innerHTML = '<p class="p-4 text-sm text-slate-500">학생 기록 관리 탭에서 학생을 먼저 등록하거나, 위에서 명단을 올려 주세요.</p>'; return; }
+  ppl.forEach(s => {
     const has = (recs[recKey(s.id)] || '').trim();
     const b = el('button', `w-full text-left px-3 py-2 rounded-lg text-sm flex items-center gap-2 ${recStu === s.id ? 'bg-slate-100 font-bold' : 'hover:bg-slate-50'}`);
     b.append(el('span', 'flex-1', `${s.no} ${s.name}`), el('span', `text-xs ${has ? 'text-emerald-600' : 'text-slate-300'}`, has ? '✓ 작성됨' : '미작성'));
@@ -2947,7 +3037,7 @@ function renderRec() {
     if (!lst.includes(recSub)) recSub = lst[0] || ''; sel.value = recSub; $('recSubName').placeholder = recType === '교과세특' ? '과목 이름 (예: 사무관리)' : '동아리 이름';
   }
   renderRecList();
-  const s = students.find(x => x.id === recStu), ok = !!s && (!hs || !!recSub);
+  const s = recPeople().find(x => x.id === recStu), ok = !!s && (!hs || !!recSub);
   $('recText').disabled = !ok; $('recText').value = ok ? recs[recKey(s.id)] || '' : '';
   $('recWho').textContent = ok ? `${s.no} ${s.name} · ${recType}${hs ? ' · ' + recSub : ''}` : (hs && !recSub ? `${recType === '교과세특' ? '과목' : '동아리'}을 먼저 추가하세요.` : '왼쪽에서 학생을 선택하세요.');
   updRecCount();
@@ -2966,9 +3056,181 @@ $('recSubDel').addEventListener('click', () => {
 });
 $('recCopy').addEventListener('click', async () => { $('recHint').textContent = (await copyText($('recText').value)) ? '복사했습니다.' : '복사에 실패했습니다.'; });
 $('recAll').addEventListener('click', async () => {
-  const txt = sorted().map(s => { const t = (recs[recKey(s.id)] || '').trim(); return t ? `${s.no} ${s.name}\n${t}` : null; }).filter(Boolean).join('\n\n');
+  const txt = recPeople().map(s => { const t = (recs[recKey(s.id)] || '').trim(); return t ? `${s.no} ${s.name}\n${t}` : null; }).filter(Boolean).join('\n\n');
   $('recHint').textContent = !txt ? '작성된 내용이 없습니다.' : (await copyText(txt)) ? '작성한 전체 내용을 복사했습니다.' : '복사에 실패했습니다.';
 });
+/* ===== 기록 작성: 과목·동아리 명단(출석부) · 자율자치 일정 ===== */
+let recRost = (() => { const v = jl('gm-rec-rost'); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; })();
+const saveRecRost = () => store('gm-rec-rost', recRost);
+function recPeople() {
+  if (hasSubT()) {
+    const r = (recRost[recType] || {})[recSub];
+    if (r && r.length) return r.map(x => { const s = students.find(y => String(y.no) === String(x.no)); return { id: s ? s.id : 'r:' + x.no, no: x.no, name: x.name }; }).sort((a, b) => String(a.no).localeCompare(String(b.no), 'ko', { numeric: true }));
+  }
+  return sorted().map(s => ({ id: s.id, no: s.no, name: s.name }));
+}
+function recChRender() {
+  const box = $('recCh'); if (!box) return; box.innerHTML = '';
+  box.classList.toggle('hidden', recType !== '자율·자치'); if (recType !== '자율·자치') return;
+  const seen = new Set(), ev = []; Object.values(ch.sheets || {}).forEach(a => (a || []).forEach(e => { if (e.area !== '자율·자치') return; const k = `${e.date}|${e.name}`; if (!seen.has(k)) { seen.add(k); ev.push(e); } }));
+  ev.sort((a, b) => a.date.localeCompare(b.date)); const t = ymd(now);
+  const head = el('div', 'flex items-center gap-2 flex-wrap mb-2'); head.append(el('h3', 'font-bold', '🌱 자율·자치 일정'), el('span', 'text-xs text-slate-500 mr-auto', ev.length ? `${ev.length}개 · 누르면 아래 "활동·교과 맥락"에 추가돼요 (AI 초안에 반영)` : ''));
+  box.appendChild(head);
+  if (!ev.length) { box.appendChild(el('p', 'text-sm text-slate-500', '창체 일정 탭에서 일정 파일을 올리면 자율·자치 활동이 여기에 모아 보입니다.')); return; }
+  const g = el('div', 'grid gap-1.5 max-h-52 overflow-y-auto pr-1'); g.style.gridTemplateColumns = 'repeat(auto-fill,minmax(220px,1fr))';
+  ev.forEach(e => {
+    const past = e.date < t, isT = e.date === t, md = e.date.slice(5).replace('-', '/'), dw = '일월화수목금토'[new Date(e.date + 'T00:00:00').getDay()];
+    const b = el('button', `text-left text-xs rounded-lg border px-2.5 py-1.5 ${isT ? 'border-sky-400 bg-sky-50' : past ? 'border-slate-200 bg-slate-50 text-slate-600' : 'border-emerald-200 bg-emerald-50'}`); b.type = 'button';
+    b.append(el('span', 'font-bold mr-1', `${md}(${dw})`), el('span', '', e.name), e.per ? el('span', 'text-slate-400 ml-1', `${e.per}교시`) : el('span'));
+    b.onclick = () => { if ($('recAiCtx').disabled) { alert('왼쪽에서 학생을 먼저 선택하세요.'); return; } const add = `${md} ${e.name}`, cur = $('recAiCtx').value.trim(); if (cur.includes(add)) return; $('recAiCtx').value = cur ? `${cur}, ${add}` : add; $('recAiCtx').dispatchEvent(new Event('input')); b.classList.add('ring-2', 'ring-sky-400'); };
+    g.appendChild(b);
+  });
+  box.appendChild(g);
+}
+{ const _rr2 = renderRec; renderRec = function () { _rr2(); recChRender(); const lst = hasSubT() && recSub && (recRost[recType] || {})[recSub]; $('recRostInfo').textContent = !hasSubT() ? '' : lst && lst.length ? `${recSub}: 올린 명단 ${lst.length}명이 왼쪽에 표시됩니다.` : '올린 명단이 없으면 내 반 학생이 표시됩니다. 출석부·동아리 명단(엑셀)을 올리면 그 학생들만 선택할 수 있어요.'; }; }
+$('recRostFile').addEventListener('change', async e => {
+  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+  try {
+    const wb = XLSX.read(await f.arrayBuffer()), type = recType, isS = type === '교과세특', lst = isS ? subjList : clubList, label = isS ? '과목' : '동아리', key = isS ? 'gm-subj' : 'gm-clubs';
+    const parts = wb.SheetNames.map(sn => ({ sn, list: parseSeatRoster({ SheetNames: [sn], Sheets: { [sn]: wb.Sheets[sn] } }) })).filter(p => p.list.length);
+    if (!parts.length) { alert('학번(또는 학년·반·번호)과 이름이 있는 명단을 찾지 못했습니다. 이름 칸 제목이 "이름" 또는 "성명"인 엑셀을 올려 주세요.'); return; }
+    recRost[type] = recRost[type] || {};
+    if (parts.length > 1 && confirm(`시트가 ${parts.length}개입니다 (${parts.map(p => p.sn).join(', ')}).\n[확인] 시트 이름을 각각 ${label} 이름으로 등록\n[취소] 현재 선택한 ${label}에 전체를 합쳐 등록`)) {
+      parts.forEach(p => { if (!lst.includes(p.sn)) lst.push(p.sn); recRost[type][p.sn] = p.list; }); store(key, lst); recSub = parts[0].sn;
+    } else {
+      const seen = new Set(), all = []; parts.forEach(p => p.list.forEach(x => { if (!seen.has(x.no)) { seen.add(x.no); all.push(x); } }));
+      let sub = recSub; if (!sub) { sub = (prompt(`${label} 이름을 입력하세요`, f.name.replace(/\.[^.]+$/, '')) || '').trim(); if (!sub) return; if (!lst.includes(sub)) lst.push(sub); store(key, lst); recSub = sub; }
+      recRost[type][sub] = all;
+    }
+    saveRecRost(); recStu = ''; renderRec();
+  } catch (err) { alert('명단을 읽지 못했습니다: ' + err.message); }
+});
+$('recRostDel').addEventListener('click', () => { if (!hasSubT() || !recSub || !((recRost[recType] || {})[recSub])) { alert('지울 명단이 없습니다.'); return; } if (!confirm(`"${recSub}" 명단을 지울까요? (작성한 기록은 그대로 남습니다)`)) return; delete recRost[recType][recSub]; saveRecRost(); recStu = ''; renderRec(); });
+/* ===== 생기부 AI 요청문 (행특·세특·자율·동아리) ===== */
+let recMemo = (() => { const v = jl('gm-rec-memo'); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; })();
+const saveRecMemo = () => store('gm-rec-memo', recMemo);
+function recAiLoad() {
+  const ok = !!$('recText') && !$('recText').disabled, k = ok ? recKey(recStu) : '', v = (ok && recMemo[k]) || {};
+  ['recAiMemo', 'recAiCtx', 'recAiBtn'].forEach(id => { $(id).disabled = !ok; });
+  $('recAiMemo').value = v.m || ''; $('recAiCtx').value = v.c || '';
+  $('recAiCtxL').firstChild.textContent = recType === '교과세특' ? '수업 내용·단원·활동 (선택)' : recType === '동아리' ? '동아리 활동 내용 (선택)' : '활동·교과 맥락 (선택)';
+}
+{ const _rr = renderRec; renderRec = function () { _rr(); recAiLoad(); }; }
+const recAiSave = () => { if (!recStu || $('recText').disabled) return; recMemo[recKey(recStu)] = { m: $('recAiMemo').value, c: $('recAiCtx').value }; saveRecMemo(); };
+$('recAiMemo').addEventListener('input', recAiSave); $('recAiCtx').addEventListener('input', recAiSave);
+const REC_FOCUS = { '행특': '학생의 인성·태도·학교생활 전반의 모습을 종합해서 쓰기', '교과세특': '교과 역량(탐구·문제해결·의사소통·협업 등)이 드러나도록 수업 활동과 연결해서 쓰기', '자율·자치': '학급·학교 자치 활동에서의 역할, 기여, 성장이 드러나게 쓰기', '동아리': '동아리 활동에서의 역할, 참여 과정, 성장이 드러나게 쓰기' };
+function recAiBuild() {
+  const s = recPeople().find(x => x.id === recStu), memo = $('recAiMemo').value.trim();
+  if (!s) { alert('왼쪽에서 학생을 먼저 선택하세요.'); return; }
+  if (!memo) { alert('관찰·활동 메모를 먼저 적어 주세요. 메모가 구체적일수록 좋은 초안이 나옵니다.'); return; }
+  const hide = $('recAiHide').checked, n = Math.max(100, +$('recAiLen').value || 500), hs = hasSubT();
+  let m = memo, c = $('recAiCtx').value.trim();
+  if (hide) { const rp = t => { if (s.no) t = t.split(`${s.no}번`).join('학생').split(s.no).join(''); if (s.name) t = t.split(s.name).join('학생'); return t.replace(/학생\s*학생/g, '학생'); }; m = rp(m); c = rp(c); }
+  const txt = [
+    `당신은 고등학교 교사입니다. 아래 관찰 메모를 바탕으로 학교생활기록부 '${recType}' 항목의 문장을 작성해 주세요.`, '',
+    `- 분량: 공백 포함 ${n}자 이내 (가능하면 ${Math.max(100, n - 60)}~${n}자)`,
+    '- 문체: 학교생활기록부 서술형. 문장을 "~함.", "~임.", "~보임.", "~드러남."처럼 명사형·개조식으로 끝내기 (존댓말·"~했다" 금지)',
+    hide ? '- 학생 이름과 학번은 쓰지 않고 주어를 생략하기' : `- 학생 이름은 "${s.name}"으로 표기 가능`,
+    `- 초점: ${REC_FOCUS[recType] || ''}`,
+    '- 메모에 없는 활동·수치·수상·결과는 절대 지어내지 않기',
+    '- 구체적인 활동, 역할, 변화와 성장 과정이 보이게 쓰고 "매우 뛰어남" 같은 추상적 칭찬 반복은 피하기',
+    '- 교외 대회·수상, 공인어학시험, 자격증, 사교육 관련 표현, 특정 기관·상호명은 쓰지 않기',
+    '- 결과는 생활기록부에 바로 붙여넣을 본문만 출력 (제목·설명·글자수 안내 없이)', '',
+    '[작성 정보]', `- 항목: ${recType}${hs && recSub ? ` (${recSub})` : ''}`, c ? `- 맥락: ${c}` : '', '', '[관찰 메모]', m
+  ].filter((x, i, a) => x !== '' || a[i - 1] !== '').join('\n');
+  $('recAiBox').value = txt;
+  return txt;
+}
+$('recAiBtn').addEventListener('click', async () => {
+  const txt = recAiBuild(); if (!txt) return;
+  $('recAiHint').textContent = (await copyText(txt)) ? '요청문을 복사했습니다. AI 채팅창에 붙여넣고, 결과를 위의 큰 입력칸에 붙여넣으세요.' : '자동 복사에 실패했습니다. 아래 요청문을 직접 선택해 복사해 주세요.';
+});
+/* ===== Gemini 연동 (API 키) ===== */
+let gem = (() => { const v = jl('gm-gemini'); return { key: v.key || '', model: v.model || '', manual: !!v.manual }; })();
+const GEM_DEF = 'gemini-2.5-flash', saveGem = () => store('gm-gemini', gem);
+const gemMsg = (t, ok) => { $('recGemMsg').textContent = t; $('recGemMsg').className = ok ? 'text-emerald-700' : 'text-slate-600'; };
+function gemUI() { $('recGemKey').value = gem.key; $('recGemModel').value = gem.model; $('recGemState').textContent = gem.key ? '· 키 입력됨' : '· 키를 입력하면 바로 작성할 수 있어요'; }
+async function gemList() {
+  let r; try { r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': gem.key } }); } catch (e) { throw new Error('모델 목록을 불러오지 못했습니다. 인터넷 연결을 확인하세요.'); }
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error((j.error && j.error.message) || `오류 ${r.status}`);
+  return (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent')).map(m => String(m.name).replace(/^models\//, ''));
+}
+function gemPick(list) {
+  const ok = list.filter(n => /^gemini-[\d.]+-flash/.test(n) && !/image|tts|audio|live|embed|thinking|lite|exp|8b/i.test(n));
+  const ver = n => parseFloat((n.match(/^gemini-([\d.]+)/) || [])[1]) || 0;
+  ok.sort((a, b) => ver(b) - ver(a) || (/preview/.test(a) ? 1 : 0) - (/preview/.test(b) ? 1 : 0) || a.length - b.length);
+  return ok[0] || list.find(n => /^gemini-.*flash/.test(n)) || list.find(n => /^gemini-/.test(n)) || '';
+}
+async function gemFill() { const l = await gemList(); $('recGemList').innerHTML = ''; l.forEach(n => { const o = document.createElement('option'); o.value = n; $('recGemList').appendChild(o); }); return l; }
+async function gemAsk(prompt, retried, tries, skip) {
+  if (!gem.key) throw new Error('API 키가 없습니다. 위 "Gemini 연결 설정"에서 키를 입력하세요.');
+  const model = (gem.model || GEM_DEF).trim();
+  let r;
+  try {
+    r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': gem.key }, body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7 } }) });
+  } catch (e) { throw new Error('인터넷 연결 또는 접속 제한으로 AI에 연결하지 못했습니다.' + (window.desk ? '' : ' (일반 브라우저에서는 막힐 수 있습니다. 설치한 프로그램에서 해 보세요.)')); }
+  let j = {}; try { j = await r.json(); } catch (e) {}
+  if (!r.ok) {
+    const m = (j.error && j.error.message) || `오류 ${r.status}`;
+    if (r.status === 404 && !retried) {
+      const l = await gemFill().catch(() => []), pick = gemPick(l);
+      if (pick && pick !== model && !gem.manual) { gem.model = pick; saveGem(); gemUI(); gemMsg(`모델을 "${pick}"(으)로 자동 변경했습니다.`, true); return gemAsk(prompt, true, 0, skip); }
+    }
+    if ((r.status === 503 || r.status === 500 || /high demand|overloaded/i.test(m)) && (tries || 0) < 3) {
+      gemMsg(`구글 서버가 붐벼서 잠시 뒤 다시 시도합니다… (${(tries || 0) + 1}/3)`, true);
+      await new Promise(z => setTimeout(z, 2500 * ((tries || 0) + 1)));
+      return gemAsk(prompt, retried, (tries || 0) + 1, skip);
+    }
+    if (r.status === 503 || r.status === 500 || /high demand|overloaded/i.test(m)) {
+      const tried = (skip || []).concat(model), l = await gemList().catch(() => []);
+      const alt = l.filter(n => /^gemini-[\d.]+-flash/.test(n) && !/image|tts|audio|live|embed|exp|8b/i.test(n) && !tried.includes(n))[0];
+      if (alt && !gem.manual) { gemMsg(`"${model}"이(가) 붐벼서 "${alt}"(으)로 시도합니다.`, true); const old = gem.model; gem.model = alt; try { return await gemAsk(prompt, true, 0, tried); } catch (e) { gem.model = old; throw e; } }
+      throw new Error('구글 AI 서버가 지금 매우 붐빕니다. 몇 분 뒤에 다시 눌러 주세요. (앱 오류가 아닙니다)');
+    }
+    if (r.status === 429) throw new Error('무료 사용 한도를 넘었습니다. 잠시 뒤에 다시 시도해 주세요.');
+    if (r.status === 400 && /API key/i.test(m)) throw new Error('API 키가 올바르지 않습니다. 키를 다시 확인해 주세요.');
+    if (r.status === 403) throw new Error('이 키로는 사용할 수 없습니다. 키 설정이나 사용 지역·계정 제한을 확인해 주세요.');
+    if (r.status === 404) throw new Error(`모델 "${model}"은(는) 이 키로 쓸 수 없습니다(이름이 바뀌었거나 종료됨). "모델 목록 불러오기"를 눌러 목록에서 고르거나, 모델 칸을 비우고 다시 테스트하면 자동으로 골라 줍니다.`);
+    throw new Error(m);
+  }
+  const c = j.candidates && j.candidates[0], t = c && c.content && c.content.parts ? c.content.parts.map(p => p.text || '').join('') : '';
+  if (!t.trim()) throw new Error(j.promptFeedback && j.promptFeedback.blockReason ? `AI가 내용을 거절했습니다(${j.promptFeedback.blockReason}). 메모 표현을 바꿔 보세요.` : 'AI가 빈 답을 보냈습니다. 다시 시도해 주세요.');
+  return t.trim();
+}
+(() => {
+  gemUI();
+  $('recGemKey').addEventListener('change', () => { gem.key = $('recGemKey').value.trim(); saveGem(); gemUI(); });
+  $('recGemModel').addEventListener('change', () => { gem.model = $('recGemModel').value.trim(); gem.manual = !!gem.model; saveGem(); });
+  $('recGemModels').addEventListener('click', async () => {
+    gem.key = $('recGemKey').value.trim(); saveGem(); if (!gem.key) { gemMsg('먼저 API 키를 입력하세요.'); return; } gemMsg('모델 목록을 불러오는 중…');
+    try { const l = await gemFill(), p = gemPick(l); gemMsg(`사용 가능한 모델 ${l.length}개를 불러왔습니다. 모델 이름 칸을 눌러 고르세요.${p ? ` (추천: ${p})` : ''}`, true); if (p && !gem.model) { gem.model = p; saveGem(); gemUI(); } } catch (e) { gemMsg(e.message); }
+  });
+  $('recGemClear').addEventListener('click', () => { gem.key = ''; saveGem(); gemUI(); gemMsg('키를 지웠습니다.'); });
+  $('recGemTest').addEventListener('click', async () => {
+    gem.key = $('recGemKey').value.trim(); gem.model = $('recGemModel').value.trim(); gem.manual = !!gem.model; saveGem(); gemUI(); gemMsg('연결 확인 중…');
+    try { await gemAsk('"연결됨"이라고만 답하세요.'); gemMsg('연결됨! 이제 ✨ AI로 바로 작성을 쓸 수 있어요.', true); } catch (e) { gemMsg(e.message); }
+  });
+  const refresh = () => { $('recGemBtn').disabled = $('recAiBtn').disabled; };
+  { const _l = recAiLoad; recAiLoad = function () { _l(); refresh(); }; }
+  $('recGemBtn').addEventListener('click', async () => {
+    const txt = recAiBuild(); if (!txt) return;
+    if (!gem.key) { $('recGemDet').open = true; gemMsg('먼저 API 키를 입력해 주세요.'); return; }
+    $('recGemBtn').disabled = true; $('recGemRun').textContent = 'AI가 쓰는 중… (10~30초)';
+    try {
+      const out = await gemAsk(txt); $('recAiOut').value = out; $('recAiOut').classList.remove('hidden'); $('recAiOutRow').classList.remove('hidden');
+      $('recAiOutCnt').textContent = `${out.length}자`; $('recGemRun').textContent = '완료! 내용을 확인하고 위 입력칸에 넣으세요.';
+    } catch (e) { $('recGemRun').textContent = '실패: ' + e.message; }
+    $('recGemBtn').disabled = $('recAiBtn').disabled;
+  });
+  $('recAiOut').addEventListener('input', () => { $('recAiOutCnt').textContent = `${$('recAiOut').value.length}자`; });
+  $('recAiUse').addEventListener('click', () => {
+    if ($('recText').disabled) return; const cur = $('recText').value.trim();
+    if (cur && !confirm('위 입력칸에 이미 내용이 있습니다. AI 초안으로 바꿀까요? (취소하면 아래에 이어 붙입니다)')) $('recText').value = cur + '\n' + $('recAiOut').value;
+    else $('recText').value = $('recAiOut').value;
+    $('recText').dispatchEvent(new Event('input')); $('recAiHint').textContent = '초안을 입력칸에 넣었습니다. 내용을 확인하고 다듬어 주세요.';
+  });
+})();
 
 /* ===== 대시보드: 노션식 바로가기 + 오늘까지 할 일 ===== */
 const GEMO = { 담임: '🧑‍🏫', 수업: '📚', 업무: '💼' };
@@ -3139,6 +3401,107 @@ function renderMeal() {
     });
   }
 }
+/* ===== 상담 신청 받기 (학생 신청 → 선생님 승인) ===== */
+const RSV_KEY = 'gm-rsv', RSVS_KEY = 'gm-rsv-slots', RSVC_KEY = 'gm-rsv-cache';
+let rsv = (() => { const v = jl(RSV_KEY); return { url: v.url || '', token: v.token || '', page: v.page || '' }; })(), rsvSlots = (() => { const v = jl(RSVS_KEY); return Array.isArray(v) ? v : []; })(), rsvCache = (() => { const v = jl(RSVC_KEY); return { reqs: Array.isArray(v.reqs) ? v.reqs : [], rosterN: v.rosterN || 0, ts: v.ts || 0 }; })(), rsvPushT = null;
+const rsvOn = () => !!(rsv.url.trim() && rsv.token);
+const rsvMsg = (t, ok) => { const m = $('rsvMsg'); if (m) { m.textContent = t; m.className = 'text-xs ' + (ok ? 'text-emerald-600' : 'text-slate-500'); } };
+async function rsvReq(method, payload) {
+  const u = rsv.url.trim();
+  const r = method === 'GET' ? await fetch(`${u}${u.includes('?') ? '&' : '?'}action=admin&token=${encodeURIComponent(rsv.token)}&t=${Date.now()}`)
+    : await fetch(u, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ token: rsv.token, ...payload }) });
+  const tx = await r.text(); let j; try { j = JSON.parse(tx); } catch (e) { throw new Error('웹 앱 응답을 읽지 못했습니다. 주소와 배포 설정(액세스: 모든 사용자)을 확인하세요.'); }
+  if (!j.ok) throw new Error(j.error || '요청 실패'); return j;
+}
+const rsvTime = r => `${r.date.slice(5).replace('-', '/')}(${'일월화수목금토'[new Date(r.date + 'T00:00:00').getDay()]}) ${r.start}~${r.end}`;
+async function rsvRefresh(quiet) {
+  if (!rsvOn()) return;
+  try {
+    const j = await rsvReq('GET');
+    rsvCache = { reqs: j.reqs || [], rosterN: j.rosterN || 0, ts: Date.now() }; store(RSVC_KEY, rsvCache);
+    if (!rsvSlots.length && (j.slots || []).length) { rsvSlots = j.slots; store(RSVS_KEY, rsvSlots); }
+    if (!quiet) rsvMsg(`연결됨 · ${new Date().toLocaleTimeString('ko-KR')} 새로고침${rsvCache.rosterN ? ` · 본인 확인 명단 ${rsvCache.rosterN}명` : ''}`, true);
+  } catch (e) { if (!quiet) rsvMsg('불러오기 실패: ' + e.message); }
+  renderRsv(); renderHomeRsv();
+}
+function rsvPush() {
+  if (!rsvOn()) return; clearTimeout(rsvPushT);
+  rsvPushT = setTimeout(async () => { try { await rsvReq('POST', { action: 'setSlots', slots: rsvSlots }); rsvMsg('상담 시간을 신청 페이지에 반영했습니다.', true); } catch (e) { rsvMsg('반영 실패: ' + e.message); } }, 700);
+}
+function renderRsv() {
+  if (!$('rsvReqList')) return;
+  const t = ymd(now), act = r => r.status === '대기' || r.status === '승인';
+  const pend = rsvCache.reqs.filter(r => r.status === '대기' && r.date >= t).sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start)), appr = rsvCache.reqs.filter(r => r.status === '승인' && r.date >= t).sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
+  $('rsvBadge').textContent = pend.length ? `● 승인 대기 ${pend.length}건` : '';
+  const box = $('rsvReqList'); box.innerHTML = '';
+  const decide = async (r, status) => {
+    const note = status === '거절' ? (prompt('학생에게 보여줄 메모(선택)', '') || '') : '';
+    try { await rsvReq('POST', { action: 'decide', id: r.id, status, note }); r.status = status; r.note = note; store(RSVC_KEY, rsvCache); renderRsv(); renderHomeRsv(); } catch (e) { alert('처리 실패: ' + e.message); }
+  };
+  const row = (r, btns) => { const d = el('div', 'rounded-lg border border-slate-200 p-2.5 bg-slate-50'); d.append(el('div', 'font-bold', `${rsvTime(r)} · ${r.name}(${r.no})`)); if (r.topic) d.append(el('div', 'text-xs text-slate-600 mt-0.5', r.topic)); const b = el('div', 'flex gap-2 mt-2'); btns.forEach(([x, cls, fn]) => { const bt = el('button', `px-3 py-1 rounded-lg text-xs font-bold ${cls}`, x); bt.type = 'button'; bt.onclick = fn; b.appendChild(bt); }); d.appendChild(b); return d; };
+  if (!rsvOn()) { box.appendChild(el('p', 'text-xs text-slate-500', '웹 앱 주소와 관리 암호를 넣으면 신청이 여기에 표시됩니다.')); }
+  else if (!pend.length && !appr.length) box.appendChild(el('p', 'text-xs text-slate-500', '아직 대기 중이거나 예정된 상담이 없습니다.'));
+  if (pend.length) box.appendChild(el('div', 'text-xs font-bold text-rose-600', '승인 대기'));
+  pend.forEach(r => box.appendChild(row(r, [['승인', 'bg-emerald-600 text-white', () => decide(r, '승인')], ['거절', 'border border-slate-300 bg-white', () => decide(r, '거절')]])));
+  if (appr.length) box.appendChild(el('div', 'text-xs font-bold text-emerald-700 mt-2', '승인된 상담'));
+  appr.forEach(r => box.appendChild(row(r, [['승인 취소(거절)', 'border border-slate-300 bg-white', () => { if (confirm('이 상담을 취소할까요? 학생 화면에 거절로 표시됩니다.')) decide(r, '거절'); }]])));
+  const sl = $('rsvSlotList'); sl.innerHTML = '';
+  const up = rsvSlots.filter(s => s.date >= t).sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start)).slice(0, 80);
+  if (!up.length) sl.appendChild(el('p', 'text-xs text-slate-500', '열어 둔 상담 시간이 없습니다.'));
+  up.forEach(s => {
+    const taken = rsvCache.reqs.find(r => r.slotId === s.id && act(r)), d = el('div', 'flex items-center gap-2 text-xs border-b border-slate-100 py-1');
+    d.append(el('span', 'flex-1', `${rsvTime(s)} ${s.name || ''}${taken ? ` · ${taken.status} ${taken.name}` : ''}`));
+    const tg = el('button', `px-2 py-0.5 rounded-full border ${s.open ? 'bg-emerald-50 border-emerald-300 text-emerald-700' : 'bg-slate-100 border-slate-300 text-slate-500'}`, s.open ? '열림' : '닫힘'); tg.type = 'button'; tg.onclick = () => { s.open = !s.open; store(RSVS_KEY, rsvSlots); rsvPush(); renderRsv(); };
+    const dl = el('button', 'text-rose-600 px-1', '✕'); dl.type = 'button'; dl.onclick = () => { if (taken && !confirm('신청이 있는 시간입니다. 그래도 삭제할까요? (신청 내역은 시트에 남습니다)')) return; rsvSlots = rsvSlots.filter(x => x.id !== s.id); store(RSVS_KEY, rsvSlots); rsvPush(); renderRsv(); };
+    d.append(tg, dl); sl.appendChild(d);
+  });
+}
+function renderHomeRsv() {
+  const box = $('homeRsv'); if (!box) return;
+  if (!rsvOn()) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+  box.classList.remove('hidden'); box.innerHTML = '';
+  const t = ymd(now), today = rsvCache.reqs.filter(r => r.status === '승인' && r.date === t).sort((a, b) => a.start.localeCompare(b.start)), pend = rsvCache.reqs.filter(r => r.status === '대기' && r.date >= t).length;
+  const head = el('div', 'flex items-center gap-2 mb-2'); head.append(el('h2', 'font-bold text-lg mr-auto', '💬 오늘 상담'));
+  if (pend) { const b = el('button', 'text-xs font-bold px-2.5 py-1 rounded-full bg-rose-100 text-rose-700', `승인 대기 ${pend}건`); b.type = 'button'; b.onclick = () => { goTab('counsel'); const d = $('rsvDet'); if (d) d.open = true; }; head.appendChild(b); }
+  const fo = localStorage.getItem('gm-fold-rsv') === '0', tg = el('button', 'text-xs border border-slate-300 rounded-full px-2 py-0.5 bg-white', fo ? '펼치기' : '접기'); tg.type = 'button'; tg.onclick = () => { localStorage.setItem('gm-fold-rsv', fo ? '1' : '0'); renderHomeRsv(); }; head.appendChild(tg);
+  box.appendChild(head); if (fo) return;
+  if (!today.length) box.appendChild(el('p', 'text-sm text-slate-500', '오늘 예정된 상담이 없습니다.'));
+  today.forEach(r => { const d = el('div', 'flex items-baseline gap-2 py-1 border-b border-slate-100 last:border-0 text-sm'); d.append(el('span', 'font-bold text-sky-700 w-24 shrink-0', `${r.start}~${r.end}`), el('span', 'font-bold', `${r.name}`), el('span', 'text-xs text-slate-500', r.no), el('span', 'text-xs text-slate-600 truncate', r.topic || '')); box.appendChild(d); });
+}
+(() => {
+  if (!$('rsvUrl')) return;
+  $('rsvUrl').value = rsv.url; $('rsvTok').value = rsv.token; $('rsvPage').value = rsv.page;
+  const sv = () => { rsv = { url: $('rsvUrl').value.trim(), token: $('rsvTok').value, page: $('rsvPage').value.trim() }; store(RSV_KEY, rsv); };
+  ['rsvUrl', 'rsvTok', 'rsvPage'].forEach(id => $(id).addEventListener('change', () => { sv(); renderHomeRsv(); rsvRefresh(); }));
+  const days = $('rsvDays'); '월화수목금'.split('').forEach((d, i) => { const l = el('label', 'flex items-center gap-1'); const c = el('input'); c.type = 'checkbox'; c.checked = true; c.dataset.d = i + 1; l.append(c, d); days.appendChild(l); });
+  $('rsvFrom').value = ymd(now); $('rsvTo').value = ymd(now);
+  $('rsvAdd').addEventListener('click', () => {
+    const f = $('rsvFrom').value, t = $('rsvTo').value || f, s = $('rsvStart').value, e = $('rsvEnd').value, nm = $('rsvName').value.trim();
+    if (!f || !s || !e) { alert('날짜와 시간을 입력해 주세요.'); return; } if (e <= s) { alert('끝 시간은 시작 시간 이후여야 합니다.'); return; } if (t < f) { alert('끝 날짜는 시작 날짜 이후여야 합니다.'); return; }
+    const ok = new Set([...days.querySelectorAll('input:checked')].map(c => +c.dataset.d)); let n = 0;
+    for (let d = new Date(f + 'T00:00:00'); ymd(d) <= t; d.setDate(d.getDate() + 1)) { const ds = ymd(d); if (!ok.has(d.getDay())) continue; if (rsvSlots.some(x => x.date === ds && x.start === s)) continue; rsvSlots.push({ id: uid(), date: ds, start: s, end: e, name: nm, open: true }); n++; }
+    store(RSVS_KEY, rsvSlots); renderRsv(); rsvPush(); rsvMsg(n ? `${n}개 상담 시간을 추가했습니다.` : '추가할 날짜가 없거나 이미 있는 시간입니다. (요일 체크 확인)', !!n);
+  });
+  $('rsvRefresh').addEventListener('click', () => rsvRefresh());
+  $('rsvLink').addEventListener('click', async () => {
+    sv(); if (!rsv.url || !rsv.page) { alert('웹 앱 주소와 학생 신청 페이지 주소를 먼저 입력하세요.'); return; }
+    const link = `${rsv.page}${rsv.page.includes('?') ? '&' : '?'}a=${encodeURIComponent(rsv.url)}`;
+    try { await navigator.clipboard.writeText(link); rsvMsg('학생용 링크를 복사했습니다. 학생들에게 이 링크를 보내세요.', true); } catch (e) { prompt('이 링크를 복사해 학생들에게 보내세요', link); }
+  });
+  $('rsvRoster').addEventListener('click', async () => {
+    if (!rsvOn()) { alert('먼저 웹 앱 주소와 관리 암호를 입력하세요.'); return; }
+    const list = students.filter(s => s.no && s.name).map(s => ({ no: String(s.no), name: s.name }));
+    if (!list.length) { alert('올릴 학생 명단이 없습니다. 학생 기록 관리 탭에서 명단을 먼저 넣어 주세요.'); return; }
+    if (!confirm(`학번·이름 ${list.length}명을 내 구글 시트에 올려, 명단과 맞는 학생만 신청할 수 있게 할까요?\n(전화번호 등 다른 정보는 올리지 않습니다)`)) return;
+    try { await rsvReq('POST', { action: 'setRoster', roster: list }); rsvMsg(`명단 ${list.length}명을 올렸습니다. 이제 학번·이름이 맞는 학생만 신청할 수 있습니다.`, true); rsvRefresh(true); } catch (e) { rsvMsg('명단 올리기 실패: ' + e.message); }
+  });
+  $('rsvRosterOff').addEventListener('click', async () => {
+    if (!rsvOn()) return; if (!confirm('명단 확인을 해제할까요? (누구나 학번·이름만 쓰면 신청할 수 있게 됩니다)')) return;
+    try { await rsvReq('POST', { action: 'setRoster', roster: [] }); rsvMsg('명단 확인을 해제했습니다.', true); rsvRefresh(true); } catch (e) { rsvMsg('실패: ' + e.message); }
+  });
+  renderRsv(); renderHomeRsv();
+  if (rsvOn()) { rsvRefresh(true); setInterval(() => { if (!document.hidden) rsvRefresh(true); }, 180000); }
+})();
 function renderHome() {
   const box = $('homeCal'); box.innerHTML = '';
   const { y, m } = homeM, t = ymd(now), first = new Date(y, m - 1, 1), dim = new Date(y, m, 0).getDate(), weeks = Math.ceil((first.getDay() + dim) / 7);
@@ -3705,6 +4068,8 @@ const SYNC_KEYS = [
   ['gm-students', '학생 명단·기록', () => students, v => { students = Array.isArray(v) ? v : []; }, 'stu'],
   ['gm-counsels', '상담 기록', () => counsels, v => { counsels = Array.isArray(v) ? v : []; }, 'stu'],
   ['gm-pass', '조퇴·외출 발급 기록', () => passes, v => { passes = Array.isArray(v) ? v : []; }, 'stu'],
+  ['gm-rec-rost', '과목·동아리 명단(기록 작성)', () => recRost, v => { recRost = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }, 'stu'],
+  ['gm-rec-memo', '생기부 관찰 메모', () => recMemo, v => { recMemo = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }, 'rec'],
   ['gm-recs', '작성한 기록(세특·행특 등)', () => recs, v => { recs = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }, 'rec'],
   ['gm-subj', '과목 목록', () => subjList, v => { subjList = Array.isArray(v) ? v : []; }, 'rec'],
   ['gm-clubs', '동아리 목록', () => clubList, v => { clubList = Array.isArray(v) ? v : []; }, 'rec'],
@@ -3772,8 +4137,16 @@ $('syncBtn').addEventListener('click', () => syncNow(true));
 renderSyncOpts(); syncUI();
 if (syncCfg.url && syncCfg.token) setTimeout(() => syncNow(false), 1500);
 
-function renderAll() { renderSch(); renderToday(); renderHome(); renderCh(); renderBudget(); renderRec(); renderDash(); renderMemos(); renderGrades(); renderDdays(); refreshMsgSel(); refreshSelects(); renderStudents(); renderTimeline(); renderPasses(); renderSeat(); absInit(); renderMeal(); }
+function renderAll() { renderSch(); renderToday(); renderHome(); renderCh(); renderBudget(); renderRec(); renderDash(); renderMemos(); renderGrades(); renderDdays(); refreshMsgSel(); refreshSelects(); renderStudents(); renderTimeline(); renderPasses(); renderSeat(); absInit(); renderMeal(); renderRsv(); renderHomeRsv(); }
 renderAll();
+
+(() => {
+  document.querySelectorAll('details.fold').forEach(d => {
+    let v = null; try { v = localStorage.getItem('gm-' + d.id); } catch (e) {}
+    if (v === '0') d.open = false;
+    d.addEventListener('toggle', () => { try { localStorage.setItem('gm-' + d.id, d.open ? '1' : '0'); } catch (e) {} });
+  });
+})();
 </script>
 </body>
 </html>
