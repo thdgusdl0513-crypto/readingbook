@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>교무실 도우미</title>
+<script>
+/* 공유용: 개인용과 저장 공간이 섞이지 않도록 모든 저장 이름 앞에 'gh:' 를 붙임 */
+(function () {
+  try {
+    var P = 'gh:', S = Storage.prototype, g = S.getItem, st = S.setItem, rm = S.removeItem;
+    var mine = function (o) { return o === window.localStorage; };
+    S.getItem = function (k) { return mine(this) ? g.call(this, P + k) : g.call(this, k); };
+    S.setItem = function (k, v) { return mine(this) ? st.call(this, P + k, v) : st.call(this, k, v); };
+    S.removeItem = function (k) { return mine(this) ? rm.call(this, P + k) : rm.call(this, k); };
+  } catch (e) {}
+})();
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -129,7 +141,7 @@
     <button id="lockCancel" type="button" class="hidden w-full text-sm text-slate-500">취소</button>
     <button id="lockSkip" type="button" class="hidden w-full text-xs text-slate-500 hover:text-slate-800">비밀번호 없이 사용</button>
     <button id="lockReset" type="button" class="hidden w-full text-xs text-slate-400 hover:text-red-600">비밀번호를 잊으셨나요? 초기화</button>
-    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3</p>
+    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 저장공간 분리</p>
   </form>
 </div>
 
@@ -451,6 +463,7 @@
         </fieldset>
         <label class="block">담임 의견<textarea id="abOpin" rows="3" maxlength="200" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></textarea></label>
         <label class="flex items-center gap-2 text-xs"><input type="checkbox" id="abOpinFix"> 📌 담임 의견 고정 (다음에 열어도 같은 내용 유지)</label>
+        <label class="block">학교 이름 (○○장 귀하에 들어감)<input id="abSchool" placeholder="예: 청양고등학교" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></label>
         <label class="block">담임교사 성명<input id="abTeacher" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></label>
         <div class="grid gap-2 pt-1">
           <button id="abPrint" type="button" class="w-full bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg py-2.5">🖨️ 인쇄 (A4)</button>
@@ -596,7 +609,7 @@
       </div>
       <p class="text-xs text-slate-500 mt-2">초기화는 학생·상담·조퇴 기록을 모두 지웁니다(D-day는 유지). 먼저 백업 파일을 저장하세요.</p>
     </section>
-    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3</p>
+    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 저장공간 분리</p>
   </div>
 </dialog>
 
@@ -2565,7 +2578,7 @@ $('lockForm').addEventListener('submit', async e => {
   const pw = $('lockPw').value, msg = t => { $('lockMsg').textContent = t; };
   if (lockMode === 'reset') {
     if (pw.trim() !== '초기화') { msg('"초기화"라고 정확히 입력해 주세요.'); return; }
-    try { Object.keys(localStorage).filter(k => k.startsWith('gm-')).forEach(k => localStorage.removeItem(k)); localStorage.setItem('gm-students', '[]'); } catch (err) {}
+    try { Object.keys(localStorage).filter(k => k.startsWith('gh:gm-')).forEach(k => localStorage.removeItem(k.slice(3))); localStorage.setItem('gm-students', '[]'); } catch (err) {}
     location.reload(); return;
   }
   if (lockMode === 'login') {
@@ -3462,7 +3475,7 @@ function absData() {
   const f = g('abFrom') ? new Date(g('abFrom') + 'T00:00:00') : null, t = g('abTo') ? new Date(g('abTo') + 'T00:00:00') : f;
   const dt = g('abDate') ? new Date(g('abDate') + 'T00:00:00') : null;
   const days = f && t && t >= f ? Math.round((t - f) / 86400000) + 1 : (f ? 1 : 0);
-  return { no: g('abNo'), name: g('abName'), tel: g('abTel'), par: g('abPar'), f, t, days, reason: g('abReason'), kind, dt, c: [$('abC1').checked, $('abC2').checked, $('abC3').checked], opin: $('abOpin').value.trim(), teacher: g('abTeacher') };
+  return { no: g('abNo'), name: g('abName'), tel: g('abTel'), par: g('abPar'), f, t, days, reason: g('abReason'), kind, dt, c: [$('abC1').checked, $('abC2').checked, $('abC3').checked], opin: $('abOpin').value.trim(), teacher: g('abTeacher'), school: g('abSchool') };
 }
 function absCanvas(d) {
   if (absUse && absTpl && absTplImg && absTplImg.naturalWidth) return absTplCanvas(d);
@@ -3494,7 +3507,7 @@ function absCanvas(d) {
   tx(d.dt ? `${d.dt.getFullYear()}년      ${d.dt.getMonth() + 1}월      ${d.dt.getDate()}일` : '        년        월        일', 362, 457, 16);
   tx(`학 생 :  ${d.name}`, 590, 498, 15, 'right'); tx('(인)', 612, 498, 15, 'left');
   tx(`학부모 :  ${d.par}`, 590, 527, 15, 'right'); tx('(인)', 612, 527, 15, 'left');
-  tx('청양고등학교장 귀하', 362, 577, 24, 'center', true);
+  tx(`${d.school || ''}장 귀하`, 362, 577, 24, 'center', true);
   tx(`가정방문( ${d.c[0] ? '✓' : '  '} )    전화확인( ${d.c[1] ? '✓' : '  '} )    학부모내교( ${d.c[2] ? '✓' : '  '} )`, 428, 633, 15);
   wrap(d.opin, 214, 685, 428, 22, 15);
   tx(`작성자 : 담임교사 ${d.teacher || 'ㅇ ㅇ ㅇ'}  (인)`, 656, 899, 15, 'right');
@@ -3523,7 +3536,9 @@ function absInit() {
 (() => {
   const t = ymd(new Date()); $('abFrom').value = t; $('abTo').value = t; $('abDate').value = t;
   try { $('abTeacher').value = localStorage.getItem('gm-teacher') || ''; } catch (e) {}
-  ['abNo', 'abName', 'abTel', 'abPar', 'abFrom', 'abTo', 'abReason', 'abDate', 'abC1', 'abC2', 'abC3', 'abOpin', 'abTeacher'].forEach(id => { $(id).addEventListener('input', absRender); $(id).addEventListener('change', absRender); });
+  try { const sv = localStorage.getItem('gm-abs-school'); $('abSchool').value = sv != null ? sv : (neis.sname || ''); } catch (e) {}
+  $('abSchool').addEventListener('input', () => { try { localStorage.setItem('gm-abs-school', $('abSchool').value); } catch (e) {} });
+  ['abNo', 'abName', 'abTel', 'abPar', 'abFrom', 'abTo', 'abReason', 'abDate', 'abC1', 'abC2', 'abC3', 'abOpin', 'abTeacher', 'abSchool'].forEach(id => { $(id).addEventListener('input', absRender); $(id).addEventListener('change', absRender); });
   document.querySelectorAll('.abK').forEach(c => c.addEventListener('change', () => { if (c.checked) document.querySelectorAll('.abK').forEach(o => { if (o !== c) o.checked = false; }); absRender(); }));
   $('abFrom').addEventListener('change', () => { if (!$('abTo').value || $('abTo').value < $('abFrom').value) $('abTo').value = $('abFrom').value; absRender(); });
   $('abStu').addEventListener('change', absStuFill);
